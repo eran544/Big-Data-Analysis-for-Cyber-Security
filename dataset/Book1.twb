@@ -1,0 +1,2292 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20201.20.0326.1623                               -->
+<workbook original-version='18.1' source-build='2020.1.2 (20201.20.0326.1623)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='Obf_webmails_fullWeek1_d1 - Copy' inline='true' name='federated.1d4xxin13snh1i1h4c29o0th67q1' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='Obf_webmails_fullWeek1_d1 - Copy' name='textscan.1u89yj10slsagf1a7iqi517hf2pf'>
+            <connection class='textscan' directory='D:/Computer Science/Semester 8th 2020/Big Data Analysis for Cyber Security/dataset' filename='Obf_webmails_fullWeek1_d1 - Copy.tsv' password='' port='0' server='' />
+          </named-connection>
+          <named-connection caption='Obf_webmails_fullWeek1_d2 - Copy' name='textscan.06pu3rt0ri9d9417yds6v1ag5haj'>
+            <connection class='textscan' directory='D:/Computer Science/Semester 8th 2020/Big Data Analysis for Cyber Security/dataset' filename='Obf_webmails_fullWeek1_d2 - Copy.tsv' password='' server='' />
+          </named-connection>
+          <named-connection caption='Obf_webmails_fullWeek1_d3 - Copy' name='textscan.0tsl09r0eo8p6q14gy1tg1qboqvw'>
+            <connection class='textscan' directory='D:/Computer Science/Semester 8th 2020/Big Data Analysis for Cyber Security/dataset' filename='Obf_webmails_fullWeek1_d3 - Copy.tsv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <relation join='full' type='join'>
+          <clause type='join'>
+            <expression op='='>
+              <expression op='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[CertInvalidDetails]' />
+              <expression op='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[CertInvalidDetails]' />
+            </expression>
+          </clause>
+          <relation join='full' type='join'>
+            <clause type='join'>
+              <expression op='='>
+                <expression op='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[CertInvalidDetails]' />
+                <expression op='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[CertInvalidDetails]' />
+              </expression>
+            </clause>
+            <relation connection='textscan.1u89yj10slsagf1a7iqi517hf2pf' name='Obf_webmails_fullWeek1_d1 - Copy.tsv' table='[Obf_webmails_fullWeek1_d1 - Copy#tsv]' type='table'>
+              <columns character-set='UTF-8' header='yes' locale='en_US' separator='&#9;'>
+                <column datatype='string' name='FileNameId' ordinal='0' />
+                <column datatype='integer' name='Sha256ID' ordinal='1' />
+                <column datatype='integer' name='Md5ID' ordinal='2' />
+                <column datatype='integer' name='Sha1ID' ordinal='3' />
+                <column datatype='integer' name='IssuerID' ordinal='4' />
+                <column datatype='integer' name='SignerID' ordinal='5' />
+                <column datatype='integer' name='PublisherID' ordinal='6' />
+                <column datatype='integer' name='WebFileIpID' ordinal='7' />
+                <column datatype='integer' name='WebFileUrlID' ordinal='8' />
+                <column datatype='integer' name='ThreatFamilyID' ordinal='9' />
+                <column datatype='integer' name='ThreatNameID' ordinal='10' />
+                <column datatype='integer' name='SigSeqID' ordinal='11' />
+                <column datatype='integer' name='SignatureNameID' ordinal='12' />
+                <column datatype='integer' name='MachineGuidID' ordinal='13' />
+                <column datatype='integer' name='RowNumber' ordinal='14' />
+                <column datatype='string' name='PeAttributesString' ordinal='15' />
+                <column datatype='string' name='WebFileUrlDomain' ordinal='16' />
+                <column datatype='string' name='WebFileUrlHostname' ordinal='17' />
+                <column datatype='string' name='Ctph' ordinal='18' />
+                <column datatype='string' name='LsHash' ordinal='19' />
+                <column datatype='string' name='ThreatCategory' ordinal='20' />
+                <column datatype='datetime' name='ReportTime' ordinal='21' />
+                <column datatype='string' name='SpynetReportGuid' ordinal='22' />
+                <column datatype='boolean' name='Firewall' ordinal='23' />
+                <column datatype='integer' name='Size' ordinal='24' />
+                <column datatype='string' name='Version' ordinal='25' />
+                <column datatype='string' name='Type' ordinal='26' />
+                <column datatype='string' name='SignerHash' ordinal='27' />
+                <column datatype='string' name='IssuerHash' ordinal='28' />
+                <column datatype='boolean' name='IsValidCertificate' ordinal='29' />
+                <column datatype='integer' name='CertInvalidDetails' ordinal='30' />
+                <column datatype='string' name='Checksum' ordinal='31' />
+                <column datatype='integer' name='IsRuntimePacked' ordinal='32' />
+                <column datatype='integer' name='FileAccess' ordinal='33' />
+                <column datatype='string' name='Screensaver' ordinal='34' />
+                <column datatype='string' name='StartupUserFolder' ordinal='35' />
+                <column datatype='string' name='MarkOfTheWeb' ordinal='36' />
+                <column datatype='datetime' name='UsnTimestamp' ordinal='37' />
+                <column datatype='boolean' name='IsInContainer' ordinal='38' />
+                <column datatype='string' name='IsContainer' ordinal='39' />
+                <column datatype='boolean' name='IsPEFile' ordinal='40' />
+                <column datatype='string' name='IsAutoRunInf' ordinal='41' />
+                <column datatype='string' name='PeTimestamp' ordinal='42' />
+              </columns>
+            </relation>
+            <relation connection='textscan.06pu3rt0ri9d9417yds6v1ag5haj' name='Obf_webmails_fullWeek1_d2 - Copy.tsv' table='[Obf_webmails_fullWeek1_d2 - Copy#tsv]' type='table'>
+              <columns character-set='UTF-8' header='yes' locale='en_US' separator='&#9;'>
+                <column datatype='string' name='FileNameId' ordinal='0' />
+                <column datatype='integer' name='Sha256ID' ordinal='1' />
+                <column datatype='integer' name='Md5ID' ordinal='2' />
+                <column datatype='integer' name='Sha1ID' ordinal='3' />
+                <column datatype='integer' name='IssuerID' ordinal='4' />
+                <column datatype='integer' name='SignerID' ordinal='5' />
+                <column datatype='integer' name='PublisherID' ordinal='6' />
+                <column datatype='integer' name='WebFileIpID' ordinal='7' />
+                <column datatype='integer' name='WebFileUrlID' ordinal='8' />
+                <column datatype='integer' name='ThreatFamilyID' ordinal='9' />
+                <column datatype='integer' name='ThreatNameID' ordinal='10' />
+                <column datatype='integer' name='SigSeqID' ordinal='11' />
+                <column datatype='integer' name='SignatureNameID' ordinal='12' />
+                <column datatype='integer' name='MachineGuidID' ordinal='13' />
+                <column datatype='integer' name='RowNumber' ordinal='14' />
+                <column datatype='string' name='PeAttributesString' ordinal='15' />
+                <column datatype='string' name='WebFileUrlDomain' ordinal='16' />
+                <column datatype='string' name='WebFileUrlHostname' ordinal='17' />
+                <column datatype='string' name='Ctph' ordinal='18' />
+                <column datatype='string' name='LsHash' ordinal='19' />
+                <column datatype='string' name='ThreatCategory' ordinal='20' />
+                <column datatype='datetime' name='ReportTime' ordinal='21' />
+                <column datatype='string' name='SpynetReportGuid' ordinal='22' />
+                <column datatype='boolean' name='Firewall' ordinal='23' />
+                <column datatype='integer' name='Size' ordinal='24' />
+                <column datatype='string' name='Version' ordinal='25' />
+                <column datatype='string' name='Type' ordinal='26' />
+                <column datatype='string' name='SignerHash' ordinal='27' />
+                <column datatype='string' name='IssuerHash' ordinal='28' />
+                <column datatype='boolean' name='IsValidCertificate' ordinal='29' />
+                <column datatype='integer' name='CertInvalidDetails' ordinal='30' />
+                <column datatype='string' name='Checksum' ordinal='31' />
+                <column datatype='integer' name='IsRuntimePacked' ordinal='32' />
+                <column datatype='integer' name='FileAccess' ordinal='33' />
+                <column datatype='string' name='Screensaver' ordinal='34' />
+                <column datatype='string' name='StartupUserFolder' ordinal='35' />
+                <column datatype='string' name='MarkOfTheWeb' ordinal='36' />
+                <column datatype='datetime' name='UsnTimestamp' ordinal='37' />
+                <column datatype='boolean' name='IsInContainer' ordinal='38' />
+                <column datatype='string' name='IsContainer' ordinal='39' />
+                <column datatype='boolean' name='IsPEFile' ordinal='40' />
+                <column datatype='string' name='IsAutoRunInf' ordinal='41' />
+                <column datatype='string' name='PeTimestamp' ordinal='42' />
+              </columns>
+            </relation>
+          </relation>
+          <relation connection='textscan.0tsl09r0eo8p6q14gy1tg1qboqvw' name='Obf_webmails_fullWeek1_d3 - Copy.tsv' table='[Obf_webmails_fullWeek1_d3 - Copy#tsv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_US' separator='&#9;'>
+              <column datatype='string' name='FileNameId' ordinal='0' />
+              <column datatype='integer' name='Sha256ID' ordinal='1' />
+              <column datatype='integer' name='Md5ID' ordinal='2' />
+              <column datatype='integer' name='Sha1ID' ordinal='3' />
+              <column datatype='integer' name='IssuerID' ordinal='4' />
+              <column datatype='integer' name='SignerID' ordinal='5' />
+              <column datatype='integer' name='PublisherID' ordinal='6' />
+              <column datatype='integer' name='WebFileIpID' ordinal='7' />
+              <column datatype='integer' name='WebFileUrlID' ordinal='8' />
+              <column datatype='integer' name='ThreatFamilyID' ordinal='9' />
+              <column datatype='integer' name='ThreatNameID' ordinal='10' />
+              <column datatype='integer' name='SigSeqID' ordinal='11' />
+              <column datatype='integer' name='SignatureNameID' ordinal='12' />
+              <column datatype='integer' name='MachineGuidID' ordinal='13' />
+              <column datatype='integer' name='RowNumber' ordinal='14' />
+              <column datatype='string' name='PeAttributesString' ordinal='15' />
+              <column datatype='string' name='WebFileUrlDomain' ordinal='16' />
+              <column datatype='string' name='WebFileUrlHostname' ordinal='17' />
+              <column datatype='string' name='Ctph' ordinal='18' />
+              <column datatype='string' name='LsHash' ordinal='19' />
+              <column datatype='string' name='ThreatCategory' ordinal='20' />
+              <column datatype='datetime' name='ReportTime' ordinal='21' />
+              <column datatype='string' name='SpynetReportGuid' ordinal='22' />
+              <column datatype='boolean' name='Firewall' ordinal='23' />
+              <column datatype='integer' name='Size' ordinal='24' />
+              <column datatype='string' name='Version' ordinal='25' />
+              <column datatype='string' name='Type' ordinal='26' />
+              <column datatype='string' name='SignerHash' ordinal='27' />
+              <column datatype='string' name='IssuerHash' ordinal='28' />
+              <column datatype='boolean' name='IsValidCertificate' ordinal='29' />
+              <column datatype='integer' name='CertInvalidDetails' ordinal='30' />
+              <column datatype='string' name='Checksum' ordinal='31' />
+              <column datatype='integer' name='IsRuntimePacked' ordinal='32' />
+              <column datatype='integer' name='FileAccess' ordinal='33' />
+              <column datatype='string' name='Screensaver' ordinal='34' />
+              <column datatype='string' name='StartupUserFolder' ordinal='35' />
+              <column datatype='string' name='MarkOfTheWeb' ordinal='36' />
+              <column datatype='datetime' name='UsnTimestamp' ordinal='37' />
+              <column datatype='boolean' name='IsInContainer' ordinal='38' />
+              <column datatype='string' name='IsContainer' ordinal='39' />
+              <column datatype='boolean' name='IsPEFile' ordinal='40' />
+              <column datatype='string' name='IsAutoRunInf' ordinal='41' />
+              <column datatype='datetime' name='PeTimestamp' ordinal='42' />
+            </columns>
+          </relation>
+        </relation>
+        <cols>
+          <map key='[CertInvalidDetails (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[CertInvalidDetails]' />
+          <map key='[CertInvalidDetails (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[CertInvalidDetails]' />
+          <map key='[CertInvalidDetails]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[CertInvalidDetails]' />
+          <map key='[Checksum (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[Checksum]' />
+          <map key='[Checksum (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[Checksum]' />
+          <map key='[Checksum]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[Checksum]' />
+          <map key='[Ctph (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[Ctph]' />
+          <map key='[Ctph (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[Ctph]' />
+          <map key='[Ctph]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[Ctph]' />
+          <map key='[FileAccess (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[FileAccess]' />
+          <map key='[FileAccess (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[FileAccess]' />
+          <map key='[FileAccess]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[FileAccess]' />
+          <map key='[FileNameId (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[FileNameId]' />
+          <map key='[FileNameId (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[FileNameId]' />
+          <map key='[FileNameId]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[FileNameId]' />
+          <map key='[Firewall (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[Firewall]' />
+          <map key='[Firewall (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[Firewall]' />
+          <map key='[Firewall]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[Firewall]' />
+          <map key='[IsAutoRunInf (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[IsAutoRunInf]' />
+          <map key='[IsAutoRunInf (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[IsAutoRunInf]' />
+          <map key='[IsAutoRunInf]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[IsAutoRunInf]' />
+          <map key='[IsContainer (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[IsContainer]' />
+          <map key='[IsContainer (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[IsContainer]' />
+          <map key='[IsContainer]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[IsContainer]' />
+          <map key='[IsInContainer (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[IsInContainer]' />
+          <map key='[IsInContainer (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[IsInContainer]' />
+          <map key='[IsInContainer]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[IsInContainer]' />
+          <map key='[IsPEFile (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[IsPEFile]' />
+          <map key='[IsPEFile (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[IsPEFile]' />
+          <map key='[IsPEFile]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[IsPEFile]' />
+          <map key='[IsRuntimePacked (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[IsRuntimePacked]' />
+          <map key='[IsRuntimePacked (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[IsRuntimePacked]' />
+          <map key='[IsRuntimePacked]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[IsRuntimePacked]' />
+          <map key='[IsValidCertificate (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[IsValidCertificate]' />
+          <map key='[IsValidCertificate (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[IsValidCertificate]' />
+          <map key='[IsValidCertificate]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[IsValidCertificate]' />
+          <map key='[IssuerHash (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[IssuerHash]' />
+          <map key='[IssuerHash (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[IssuerHash]' />
+          <map key='[IssuerHash]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[IssuerHash]' />
+          <map key='[IssuerID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[IssuerID]' />
+          <map key='[IssuerID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[IssuerID]' />
+          <map key='[IssuerID]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[IssuerID]' />
+          <map key='[LsHash (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[LsHash]' />
+          <map key='[LsHash (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[LsHash]' />
+          <map key='[LsHash]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[LsHash]' />
+          <map key='[MachineGuidID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[MachineGuidID]' />
+          <map key='[MachineGuidID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[MachineGuidID]' />
+          <map key='[MachineGuidID]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[MachineGuidID]' />
+          <map key='[MarkOfTheWeb (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[MarkOfTheWeb]' />
+          <map key='[MarkOfTheWeb (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[MarkOfTheWeb]' />
+          <map key='[MarkOfTheWeb]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[MarkOfTheWeb]' />
+          <map key='[Md5ID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[Md5ID]' />
+          <map key='[Md5ID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[Md5ID]' />
+          <map key='[Md5ID]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[Md5ID]' />
+          <map key='[PeAttributesString (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[PeAttributesString]' />
+          <map key='[PeAttributesString (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[PeAttributesString]' />
+          <map key='[PeAttributesString]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[PeAttributesString]' />
+          <map key='[PeTimestamp (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[PeTimestamp]' />
+          <map key='[PeTimestamp (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[PeTimestamp]' />
+          <map key='[PeTimestamp]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[PeTimestamp]' />
+          <map key='[PublisherID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[PublisherID]' />
+          <map key='[PublisherID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[PublisherID]' />
+          <map key='[PublisherID]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[PublisherID]' />
+          <map key='[ReportTime (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[ReportTime]' />
+          <map key='[ReportTime (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[ReportTime]' />
+          <map key='[ReportTime]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[ReportTime]' />
+          <map key='[RowNumber (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[RowNumber]' />
+          <map key='[RowNumber (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[RowNumber]' />
+          <map key='[RowNumber]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[RowNumber]' />
+          <map key='[Screensaver (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[Screensaver]' />
+          <map key='[Screensaver (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[Screensaver]' />
+          <map key='[Screensaver]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[Screensaver]' />
+          <map key='[Sha1ID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[Sha1ID]' />
+          <map key='[Sha1ID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[Sha1ID]' />
+          <map key='[Sha1ID]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[Sha1ID]' />
+          <map key='[Sha256ID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[Sha256ID]' />
+          <map key='[Sha256ID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[Sha256ID]' />
+          <map key='[Sha256ID]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[Sha256ID]' />
+          <map key='[SigSeqID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[SigSeqID]' />
+          <map key='[SigSeqID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[SigSeqID]' />
+          <map key='[SigSeqID]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[SigSeqID]' />
+          <map key='[SignatureNameID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[SignatureNameID]' />
+          <map key='[SignatureNameID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[SignatureNameID]' />
+          <map key='[SignatureNameID]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[SignatureNameID]' />
+          <map key='[SignerHash (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[SignerHash]' />
+          <map key='[SignerHash (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[SignerHash]' />
+          <map key='[SignerHash]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[SignerHash]' />
+          <map key='[SignerID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[SignerID]' />
+          <map key='[SignerID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[SignerID]' />
+          <map key='[SignerID]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[SignerID]' />
+          <map key='[Size (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[Size]' />
+          <map key='[Size (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[Size]' />
+          <map key='[Size]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[Size]' />
+          <map key='[SpynetReportGuid (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[SpynetReportGuid]' />
+          <map key='[SpynetReportGuid (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[SpynetReportGuid]' />
+          <map key='[SpynetReportGuid]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[SpynetReportGuid]' />
+          <map key='[StartupUserFolder (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[StartupUserFolder]' />
+          <map key='[StartupUserFolder (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[StartupUserFolder]' />
+          <map key='[StartupUserFolder]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[StartupUserFolder]' />
+          <map key='[ThreatCategory (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[ThreatCategory]' />
+          <map key='[ThreatCategory (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[ThreatCategory]' />
+          <map key='[ThreatCategory]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[ThreatCategory]' />
+          <map key='[ThreatFamilyID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[ThreatFamilyID]' />
+          <map key='[ThreatFamilyID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[ThreatFamilyID]' />
+          <map key='[ThreatFamilyID]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[ThreatFamilyID]' />
+          <map key='[ThreatNameID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[ThreatNameID]' />
+          <map key='[ThreatNameID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[ThreatNameID]' />
+          <map key='[ThreatNameID]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[ThreatNameID]' />
+          <map key='[Type (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[Type]' />
+          <map key='[Type (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[Type]' />
+          <map key='[Type]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[Type]' />
+          <map key='[UsnTimestamp (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[UsnTimestamp]' />
+          <map key='[UsnTimestamp (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[UsnTimestamp]' />
+          <map key='[UsnTimestamp]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[UsnTimestamp]' />
+          <map key='[Version (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[Version]' />
+          <map key='[Version (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[Version]' />
+          <map key='[Version]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[Version]' />
+          <map key='[WebFileIpID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[WebFileIpID]' />
+          <map key='[WebFileIpID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[WebFileIpID]' />
+          <map key='[WebFileIpID]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[WebFileIpID]' />
+          <map key='[WebFileUrlDomain (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[WebFileUrlDomain]' />
+          <map key='[WebFileUrlDomain (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[WebFileUrlDomain]' />
+          <map key='[WebFileUrlDomain]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[WebFileUrlDomain]' />
+          <map key='[WebFileUrlHostname (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[WebFileUrlHostname]' />
+          <map key='[WebFileUrlHostname (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[WebFileUrlHostname]' />
+          <map key='[WebFileUrlHostname]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[WebFileUrlHostname]' />
+          <map key='[WebFileUrlID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d2 - Copy.tsv].[WebFileUrlID]' />
+          <map key='[WebFileUrlID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' value='[Obf_webmails_fullWeek1_d3 - Copy.tsv].[WebFileUrlID]' />
+          <map key='[WebFileUrlID]' value='[Obf_webmails_fullWeek1_d1 - Copy.tsv].[WebFileUrlID]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;\\t&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FileNameId</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[FileNameId]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>FileNameId</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Sha256ID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Sha256ID]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>Sha256ID</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Md5ID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Md5ID]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>Md5ID</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Sha1ID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Sha1ID]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>Sha1ID</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssuerID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[IssuerID]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>IssuerID</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SignerID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SignerID]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>SignerID</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PublisherID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[PublisherID]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>PublisherID</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WebFileIpID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[WebFileIpID]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>WebFileIpID</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WebFileUrlID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[WebFileUrlID]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>WebFileUrlID</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ThreatFamilyID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[ThreatFamilyID]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>ThreatFamilyID</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ThreatNameID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[ThreatNameID]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>ThreatNameID</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SigSeqID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SigSeqID]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>SigSeqID</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SignatureNameID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SignatureNameID]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>SignatureNameID</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>MachineGuidID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[MachineGuidID]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>MachineGuidID</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>RowNumber</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[RowNumber]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>RowNumber</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PeAttributesString</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[PeAttributesString]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>PeAttributesString</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WebFileUrlDomain</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[WebFileUrlDomain]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>WebFileUrlDomain</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WebFileUrlHostname</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[WebFileUrlHostname]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>WebFileUrlHostname</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Ctph</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Ctph]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>Ctph</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>LsHash</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[LsHash]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>LsHash</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ThreatCategory</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ThreatCategory]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>ThreatCategory</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ReportTime</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[ReportTime]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>ReportTime</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SpynetReportGuid</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SpynetReportGuid]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>SpynetReportGuid</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Firewall</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[Firewall]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>Firewall</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Size</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Size]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>Size</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Version</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Version]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>Version</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Type</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Type]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>Type</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SignerHash</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SignerHash]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>SignerHash</remote-alias>
+            <ordinal>27</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssuerHash</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[IssuerHash]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>IssuerHash</remote-alias>
+            <ordinal>28</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsValidCertificate</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[IsValidCertificate]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>IsValidCertificate</remote-alias>
+            <ordinal>29</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CertInvalidDetails</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[CertInvalidDetails]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>CertInvalidDetails</remote-alias>
+            <ordinal>30</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Checksum</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Checksum]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>Checksum</remote-alias>
+            <ordinal>31</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsRuntimePacked</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[IsRuntimePacked]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>IsRuntimePacked</remote-alias>
+            <ordinal>32</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FileAccess</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[FileAccess]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>FileAccess</remote-alias>
+            <ordinal>33</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Screensaver</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Screensaver]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>Screensaver</remote-alias>
+            <ordinal>34</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>1</approx-count>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>StartupUserFolder</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[StartupUserFolder]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>StartupUserFolder</remote-alias>
+            <ordinal>35</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>1</approx-count>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>MarkOfTheWeb</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[MarkOfTheWeb]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>MarkOfTheWeb</remote-alias>
+            <ordinal>36</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>UsnTimestamp</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[UsnTimestamp]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>UsnTimestamp</remote-alias>
+            <ordinal>37</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsInContainer</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[IsInContainer]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>IsInContainer</remote-alias>
+            <ordinal>38</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsContainer</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[IsContainer]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>IsContainer</remote-alias>
+            <ordinal>39</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>1</approx-count>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsPEFile</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[IsPEFile]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>IsPEFile</remote-alias>
+            <ordinal>40</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsAutoRunInf</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[IsAutoRunInf]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>IsAutoRunInf</remote-alias>
+            <ordinal>41</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>1</approx-count>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PeTimestamp</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[PeTimestamp]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d1 - Copy.tsv]</parent-name>
+            <remote-alias>PeTimestamp</remote-alias>
+            <ordinal>42</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;\\t&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FileNameId</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[FileNameId (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>FileNameId</remote-alias>
+            <ordinal>43</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Sha256ID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Sha256ID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>Sha256ID</remote-alias>
+            <ordinal>44</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Md5ID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Md5ID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>Md5ID</remote-alias>
+            <ordinal>45</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Sha1ID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Sha1ID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>Sha1ID</remote-alias>
+            <ordinal>46</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssuerID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[IssuerID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>IssuerID</remote-alias>
+            <ordinal>47</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SignerID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SignerID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>SignerID</remote-alias>
+            <ordinal>48</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PublisherID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[PublisherID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>PublisherID</remote-alias>
+            <ordinal>49</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WebFileIpID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[WebFileIpID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>WebFileIpID</remote-alias>
+            <ordinal>50</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WebFileUrlID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[WebFileUrlID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>WebFileUrlID</remote-alias>
+            <ordinal>51</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ThreatFamilyID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[ThreatFamilyID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>ThreatFamilyID</remote-alias>
+            <ordinal>52</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ThreatNameID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[ThreatNameID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>ThreatNameID</remote-alias>
+            <ordinal>53</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SigSeqID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SigSeqID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>SigSeqID</remote-alias>
+            <ordinal>54</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SignatureNameID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SignatureNameID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>SignatureNameID</remote-alias>
+            <ordinal>55</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>MachineGuidID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[MachineGuidID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>MachineGuidID</remote-alias>
+            <ordinal>56</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>RowNumber</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[RowNumber (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>RowNumber</remote-alias>
+            <ordinal>57</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PeAttributesString</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[PeAttributesString (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>PeAttributesString</remote-alias>
+            <ordinal>58</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WebFileUrlDomain</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[WebFileUrlDomain (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>WebFileUrlDomain</remote-alias>
+            <ordinal>59</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WebFileUrlHostname</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[WebFileUrlHostname (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>WebFileUrlHostname</remote-alias>
+            <ordinal>60</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Ctph</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Ctph (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>Ctph</remote-alias>
+            <ordinal>61</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>LsHash</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[LsHash (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>LsHash</remote-alias>
+            <ordinal>62</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ThreatCategory</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ThreatCategory (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>ThreatCategory</remote-alias>
+            <ordinal>63</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ReportTime</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[ReportTime (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>ReportTime</remote-alias>
+            <ordinal>64</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SpynetReportGuid</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SpynetReportGuid (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>SpynetReportGuid</remote-alias>
+            <ordinal>65</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Firewall</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[Firewall (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>Firewall</remote-alias>
+            <ordinal>66</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Size</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Size (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>Size</remote-alias>
+            <ordinal>67</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Version</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Version (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>Version</remote-alias>
+            <ordinal>68</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Type</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Type (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>Type</remote-alias>
+            <ordinal>69</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SignerHash</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SignerHash (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>SignerHash</remote-alias>
+            <ordinal>70</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssuerHash</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[IssuerHash (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>IssuerHash</remote-alias>
+            <ordinal>71</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsValidCertificate</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[IsValidCertificate (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>IsValidCertificate</remote-alias>
+            <ordinal>72</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CertInvalidDetails</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[CertInvalidDetails (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>CertInvalidDetails</remote-alias>
+            <ordinal>73</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Checksum</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Checksum (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>Checksum</remote-alias>
+            <ordinal>74</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsRuntimePacked</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[IsRuntimePacked (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>IsRuntimePacked</remote-alias>
+            <ordinal>75</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FileAccess</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[FileAccess (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>FileAccess</remote-alias>
+            <ordinal>76</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Screensaver</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Screensaver (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>Screensaver</remote-alias>
+            <ordinal>77</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>1</approx-count>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>StartupUserFolder</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[StartupUserFolder (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>StartupUserFolder</remote-alias>
+            <ordinal>78</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>1</approx-count>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>MarkOfTheWeb</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[MarkOfTheWeb (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>MarkOfTheWeb</remote-alias>
+            <ordinal>79</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>UsnTimestamp</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[UsnTimestamp (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>UsnTimestamp</remote-alias>
+            <ordinal>80</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsInContainer</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[IsInContainer (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>IsInContainer</remote-alias>
+            <ordinal>81</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsContainer</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[IsContainer (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>IsContainer</remote-alias>
+            <ordinal>82</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>1</approx-count>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsPEFile</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[IsPEFile (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>IsPEFile</remote-alias>
+            <ordinal>83</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsAutoRunInf</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[IsAutoRunInf (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>IsAutoRunInf</remote-alias>
+            <ordinal>84</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>1</approx-count>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PeTimestamp</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[PeTimestamp (Obf_webmails_fullWeek1_d2 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d2 - Copy.tsv]</parent-name>
+            <remote-alias>PeTimestamp</remote-alias>
+            <ordinal>85</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;\\t&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FileNameId</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[FileNameId (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>FileNameId</remote-alias>
+            <ordinal>86</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Sha256ID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Sha256ID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>Sha256ID</remote-alias>
+            <ordinal>87</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Md5ID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Md5ID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>Md5ID</remote-alias>
+            <ordinal>88</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Sha1ID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Sha1ID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>Sha1ID</remote-alias>
+            <ordinal>89</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssuerID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[IssuerID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>IssuerID</remote-alias>
+            <ordinal>90</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SignerID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SignerID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>SignerID</remote-alias>
+            <ordinal>91</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PublisherID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[PublisherID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>PublisherID</remote-alias>
+            <ordinal>92</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WebFileIpID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[WebFileIpID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>WebFileIpID</remote-alias>
+            <ordinal>93</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WebFileUrlID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[WebFileUrlID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>WebFileUrlID</remote-alias>
+            <ordinal>94</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ThreatFamilyID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[ThreatFamilyID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>ThreatFamilyID</remote-alias>
+            <ordinal>95</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ThreatNameID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[ThreatNameID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>ThreatNameID</remote-alias>
+            <ordinal>96</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SigSeqID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SigSeqID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>SigSeqID</remote-alias>
+            <ordinal>97</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SignatureNameID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SignatureNameID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>SignatureNameID</remote-alias>
+            <ordinal>98</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>MachineGuidID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[MachineGuidID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>MachineGuidID</remote-alias>
+            <ordinal>99</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>RowNumber</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[RowNumber (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>RowNumber</remote-alias>
+            <ordinal>100</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PeAttributesString</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[PeAttributesString (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>PeAttributesString</remote-alias>
+            <ordinal>101</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WebFileUrlDomain</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[WebFileUrlDomain (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>WebFileUrlDomain</remote-alias>
+            <ordinal>102</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WebFileUrlHostname</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[WebFileUrlHostname (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>WebFileUrlHostname</remote-alias>
+            <ordinal>103</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Ctph</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Ctph (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>Ctph</remote-alias>
+            <ordinal>104</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>LsHash</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[LsHash (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>LsHash</remote-alias>
+            <ordinal>105</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ThreatCategory</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ThreatCategory (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>ThreatCategory</remote-alias>
+            <ordinal>106</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ReportTime</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[ReportTime (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>ReportTime</remote-alias>
+            <ordinal>107</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SpynetReportGuid</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SpynetReportGuid (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>SpynetReportGuid</remote-alias>
+            <ordinal>108</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Firewall</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[Firewall (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>Firewall</remote-alias>
+            <ordinal>109</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Size</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Size (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>Size</remote-alias>
+            <ordinal>110</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Version</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Version (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>Version</remote-alias>
+            <ordinal>111</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Type</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Type (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>Type</remote-alias>
+            <ordinal>112</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SignerHash</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SignerHash (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>SignerHash</remote-alias>
+            <ordinal>113</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssuerHash</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[IssuerHash (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>IssuerHash</remote-alias>
+            <ordinal>114</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsValidCertificate</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[IsValidCertificate (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>IsValidCertificate</remote-alias>
+            <ordinal>115</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CertInvalidDetails</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[CertInvalidDetails (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>CertInvalidDetails</remote-alias>
+            <ordinal>116</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Checksum</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Checksum (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>Checksum</remote-alias>
+            <ordinal>117</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsRuntimePacked</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[IsRuntimePacked (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>IsRuntimePacked</remote-alias>
+            <ordinal>118</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FileAccess</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[FileAccess (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>FileAccess</remote-alias>
+            <ordinal>119</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Screensaver</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Screensaver (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>Screensaver</remote-alias>
+            <ordinal>120</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>1</approx-count>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>StartupUserFolder</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[StartupUserFolder (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>StartupUserFolder</remote-alias>
+            <ordinal>121</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>1</approx-count>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>MarkOfTheWeb</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[MarkOfTheWeb (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>MarkOfTheWeb</remote-alias>
+            <ordinal>122</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>UsnTimestamp</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[UsnTimestamp (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>UsnTimestamp</remote-alias>
+            <ordinal>123</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsInContainer</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[IsInContainer (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>IsInContainer</remote-alias>
+            <ordinal>124</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsContainer</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[IsContainer (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>IsContainer</remote-alias>
+            <ordinal>125</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>1</approx-count>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsPEFile</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[IsPEFile (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>IsPEFile</remote-alias>
+            <ordinal>126</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IsAutoRunInf</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[IsAutoRunInf (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>IsAutoRunInf</remote-alias>
+            <ordinal>127</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>1</approx-count>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PeTimestamp</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[PeTimestamp (Obf_webmails_fullWeek1_d3 - Copy.tsv)]</local-name>
+            <parent-name>[Obf_webmails_fullWeek1_d3 - Copy.tsv]</parent-name>
+            <remote-alias>PeTimestamp</remote-alias>
+            <ordinal>128</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <column datatype='integer' name='[IssuerID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[IssuerID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[IssuerID]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[MachineGuidID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[MachineGuidID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[MachineGuidID]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[Md5ID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[Md5ID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[Md5ID]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='integer' name='[PublisherID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[PublisherID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[PublisherID]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[RowNumber (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[RowNumber (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[RowNumber]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[Sha1ID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[Sha1ID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[Sha1ID]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[Sha256ID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[Sha256ID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[Sha256ID]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[SigSeqID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[SigSeqID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[SigSeqID]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[SignatureNameID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[SignatureNameID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[SignatureNameID]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[SignerID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[SignerID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[SignerID]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[ThreatFamilyID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[ThreatFamilyID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[ThreatFamilyID]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[ThreatNameID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[ThreatNameID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[ThreatNameID]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[WebFileIpID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[WebFileIpID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[WebFileIpID]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[WebFileUrlID (Obf_webmails_fullWeek1_d2 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[WebFileUrlID (Obf_webmails_fullWeek1_d3 - Copy.tsv)]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[WebFileUrlID]' role='dimension' type='ordinal' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.550378' measure-ordering='alphabetic' measure-percentage='0.449622' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Israel&quot;' />
+      </semantic-values>
+      <date-options start-of-week='monday' />
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Obf_webmails_fullWeek1_d1 - Copy' name='federated.1d4xxin13snh1i1h4c29o0th67q1' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1d4xxin13snh1i1h4c29o0th67q1'>
+            <column datatype='string' name='[FileNameId]' role='dimension' type='nominal' />
+            <column datatype='datetime' name='[UsnTimestamp]' role='dimension' type='ordinal' />
+            <column-instance column='[FileNameId]' derivation='None' name='[none:FileNameId:nk]' pivot='key' type='nominal' />
+            <column-instance column='[UsnTimestamp]' derivation='Day-Trunc' name='[tdy:UsnTimestamp:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[UsnTimestamp]' derivation='Day-Trunc' name='[tdy:UsnTimestamp:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1d4xxin13snh1i1h4c29o0th67q1].[tdy:UsnTimestamp:ok]'>
+            <groupfilter function='except' user:ui-domain='database' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[tdy:UsnTimestamp:ok]' />
+              <groupfilter function='member' level='[tdy:UsnTimestamp:ok]' member='#2016-05-10 00:00:00#' />
+            </groupfilter>
+          </filter>
+          <filter class='quantitative' column='[federated.1d4xxin13snh1i1h4c29o0th67q1].[tdy:UsnTimestamp:qk]' included-values='in-range'>
+            <min>#2017-01-01 00:00:00#</min>
+            <max>#2017-01-07 00:00:00#</max>
+          </filter>
+          <slices>
+            <column>[federated.1d4xxin13snh1i1h4c29o0th67q1].[tdy:UsnTimestamp:ok]</column>
+            <column>[federated.1d4xxin13snh1i1h4c29o0th67q1].[tdy:UsnTimestamp:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1d4xxin13snh1i1h4c29o0th67q1].[none:FileNameId:nk]</rows>
+        <cols>[federated.1d4xxin13snh1i1h4c29o0th67q1].[tdy:UsnTimestamp:qk]</cols>
+      </table>
+      <simple-id uuid='{7BFF6599-3064-40E3-9A65-4D1F0E0E4F82}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' maximized='true' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.1d4xxin13snh1i1h4c29o0th67q1].[none:Checksum:nk]</field>
+            <field>[federated.1d4xxin13snh1i1h4c29o0th67q1].[none:FileNameId:nk]</field>
+            <field>[federated.1d4xxin13snh1i1h4c29o0th67q1].[none:SignerHash:nk]</field>
+            <field>[federated.1d4xxin13snh1i1h4c29o0th67q1].[none:ThreatFamilyID:ok]</field>
+            <field>[federated.1d4xxin13snh1i1h4c29o0th67q1].[none:Type:nk]</field>
+            <field>[federated.1d4xxin13snh1i1h4c29o0th67q1].[yr:ReportTime:ok]</field>
+            <field>[federated.1d4xxin13snh1i1h4c29o0th67q1].[yr:UsnTimestamp:ok]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{D7065ED7-7B1B-4345-BDE5-DAF9E503556D}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Sheet 1' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>
