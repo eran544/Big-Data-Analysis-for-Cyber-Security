@@ -9,8 +9,9 @@ import matplotlib.dates as md
 import numpy as np
 import dateutil
 
-from datetime import datetime
 
+#-------------------import csv from path -------------------------
+from datetime import datetime
 # # get data file names
 # path =r'C:\Users\user\Documents\לימודים\שנה ד\סמסטר ב\Big Data Analysis for Cyber Security'
 # filenames = glob.glob(path + "/*.csv")
@@ -26,7 +27,7 @@ from datetime import datetime
 day = pd.read_csv("twoDaysData.csv")
 day1 = day[["Sha1ID", "FileNameId", "ReportTime", "MachineGuidID"]]
 
-#create a dataSet to each file
+#--------------------create a dataSet to each file------------------------------
 day1.sort_values(by=['Sha1ID', 'ReportTime'], ascending=[True, True], inplace=True)
 i = -1
 j = 0
@@ -51,14 +52,14 @@ for sha in day1["Sha1ID"]:
 files[j] = pd.DataFrame(files[j], columns=["sha", "name", "time", "machine"])
 
 
-#remove from each dataSet file apearnces with duplicated machines and keep the earliest
+#------------------remove from each dataSet file apearnces with duplicated machines and keep the earliest-----------
 i = 0
 for i in range(len(files)):
     files[i].sort_values(by=['time', 'machine'], ascending=[True, True], inplace=True)
     files[i].drop_duplicates('machine', keep="first", inplace=True)
 
 
-#create time set to each file dataset - machine vs hours
+#-------------------create time set to each file dataset - machine vs hours-----------------
 i = 0
 timeSets = []
 for i in range(len(files)):
@@ -68,20 +69,23 @@ for i in range(len(files)):
     timeSets.append(files[i].groupby([pd.Grouper(key='time',freq='H')]).size().reset_index(name='count'))
 print("A")
 
+#------get time set of all hours between 1/1 to 11/1 vs number of machines.------------
+#ranged by hour
+HourDeltas = pd.Series(pd.date_range(start='2017-01-01', end='2017-01-11', freq='H'))
+HourDeltasList = [[hour,0] for hour in HourDeltas]
+timeRangeVSmacine=[]
 
+for i in range(len(files)):
+    timeRangeVSmacine.append(pd.DataFrame(HourDeltasList, columns=['time', 'count']))
+    timeRangeVSmacine[i]=timeSets[i].append(timeRangeVSmacine[i],ignore_index=True)
+    timeRangeVSmacine[i].drop_duplicates('time', keep="first", inplace=True)
+    timeRangeVSmacine[i].sort_values(by=['time'], ascending=[True], inplace=True)
 
+#-------------------print Graph machine vs hours-----------------
 
 i = 0
 for i in range(len(timeSets)):
-
-    # plt.plot(timeSets[i]['time'].dt.day, timeSets[i]['count'], 'ro')
     hours = timeSets[i]['time']
-
-
-    # dates = [ pd.to_datetime(ts) for ts in hours]
-    # datesString = [datetime.strptime(str(ts), '%Y-%m-%d %H:%M:%S') for ts in dates]
-    # dates = [dateutil.parser.parse(s) for s in datesString]
-
     dates = [ pd.to_datetime(ts) for ts in hours]
     values = timeSets[i]['count']
     valuesList = [ts for ts in values]
@@ -92,15 +96,11 @@ for i in range(len(timeSets)):
     ax.xaxis.set_major_formatter(xfmt)
     plt.gca().xaxis.set_major_locator(md.HourLocator())
     plt.plot(dates, valuesList,"o-")
-    #plt.gcf().autofmt_xdate()
     print("x")
     rangeCount = range(min(timeSets[i]['count']),max(timeSets[i]['count'])+1)
     plt.yticks(rangeCount)
-    # plt.show()
-    # plt.xticks(hours)
-    # plt.yticks(rangeCount)
     plt.title("file {0}".format(i))
     plt.ylabel('machines')
     plt.xlabel('hours')
-
     plt.show()
+#-------------------
