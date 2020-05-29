@@ -23,34 +23,41 @@ from datetime import datetime
 # # Concatenate all data into one DataFrame
 # big_frame = pd.concat(dfs, ignore_index=True)
 # print ("a")
+from matplotlib import pyplot, rcParams
 
-day = pd.read_csv("twoDaysData.csv")
+day = pd.read_csv("data.csv")
 day1 = day[["Sha1ID", "FileNameId", "ReportTime", "MachineGuidID"]]
 
 #--------------------create a dataSet to each file------------------------------
+# day1.sort_values(by=['Sha1ID', 'ReportTime'], ascending=[True, True], inplace=True)
+# i = -1
+# j = 0
+# currF = day1.iloc[0][0]
+# files = [[]]
+# files[j] = []
+# for sha in day1["Sha1ID"]:
+#     if i < 500:
+#         i = i + 1
+#         if currF == sha:
+#             files[j].append(
+#                 [day1.iloc[i][0], day1.iloc[i][1], day1.iloc[i][2], day1.iloc[i][3]]
+#             )
+#         else:
+#             files[j] = pd.DataFrame(files[j], columns=["sha", "name", "time", "machine"])
+#             currF = sha
+#             j = j + 1
+#             files.append([])
+#             files[j].append(
+#                 [day1.iloc[i][0], day1.iloc[i][1], day1.iloc[i][2], day1.iloc[i][3]]
+#             )
+# files[j] = pd.DataFrame(files[j], columns=["sha", "name", "time", "machine"])
+#--------------------create a dataSet to a specific file------------------------------
 day1.sort_values(by=['Sha1ID', 'ReportTime'], ascending=[True, True], inplace=True)
-i = -1
-j = 0
-currF = day1.iloc[0][0]
-files = [[]]
-files[j] = []
-for sha in day1["Sha1ID"]:
-    if i < 500:
-        i = i + 1
-        if currF == sha:
-            files[j].append(
-                [day1.iloc[i][0], day1.iloc[i][1], day1.iloc[i][2], day1.iloc[i][3]]
-            )
-        else:
-            files[j] = pd.DataFrame(files[j], columns=["sha", "name", "time", "machine"])
-            currF = sha
-            j = j + 1
-            files.append([])
-            files[j].append(
-                [day1.iloc[i][0], day1.iloc[i][1], day1.iloc[i][2], day1.iloc[i][3]]
-            )
-files[j] = pd.DataFrame(files[j], columns=["sha", "name", "time", "machine"])
-
+oneMechine = day1.loc[day1['Sha1ID'] == 5323043]
+files=[]
+files.append(oneMechine)
+files[0] = pd.DataFrame(files[0])
+files[0].rename(columns={"ReportTime": "time", "MachineGuidID": "machine"}, inplace=True, errors="raise")
 
 #------------------remove from each dataSet file apearnces with duplicated machines and keep the earliest-----------
 i = 0
@@ -71,7 +78,7 @@ print("A")
 
 #------get time set of all hours between 1/1 to 11/1 vs number of machines.------------
 #ranged by hour
-HourDeltas = pd.Series(pd.date_range(start='2017-01-01', end='2017-01-11', freq='H'))
+HourDeltas = pd.Series(pd.date_range(start='2017-01-01', end='2017-01-12', freq='H'))
 HourDeltasList = [[hour,0] for hour in HourDeltas]
 timeRangeVSmacine=[]
 
@@ -85,22 +92,35 @@ for i in range(len(files)):
 
 i = 0
 for i in range(len(timeSets)):
+    plt.figure(figsize=(12, 6))
+
     hours = timeSets[i]['time']
-    dates = [ pd.to_datetime(ts) for ts in hours]
+    dates = [pd.to_datetime(ts) for ts in hours]
     values = timeSets[i]['count']
     valuesList = [ts for ts in values]
-    plt.subplots_adjust(bottom=0.25)
-    plt.xticks(rotation=25)
+    plt.subplots_adjust(bottom=0.1)
+    plt.xticks(rotation=50)
     ax = plt.gca()
-    xfmt = md.DateFormatter('%Y-%m-%d %H:%M:%S')
+    xfmt = md.DateFormatter('%Y-%m-%d\n%H:%M:%S')
     ax.xaxis.set_major_formatter(xfmt)
-    plt.gca().xaxis.set_major_locator(md.HourLocator())
-    plt.plot(dates, valuesList,"o-")
+    ax.xaxis.set_major_locator(plt.MaxNLocator(22))
+    plt.gca().xaxis.set_minor_locator(md.HourLocator())
+    plt.plot(dates, valuesList, "o-")
     print("x")
     rangeCount = range(min(timeSets[i]['count']),max(timeSets[i]['count'])+1)
     plt.yticks(rangeCount)
     plt.title("file {0}".format(i))
     plt.ylabel('machines')
     plt.xlabel('hours')
+
+    ax.set_xlim(xmin=min(HourDeltas))
+    ax.set_ylim(ymin=0)
+    plt.tick_params(axis='x', which='major', labelsize=7)
+    plt.tight_layout()
+    plt.grid(b=True, which='major', color='#666666', linestyle='-')
+    plt.minorticks_on()
+    plt.grid(b=True, which='minor', color='#999999', linestyle='-', alpha=0.2)
+
     plt.show()
+
 #-------------------
