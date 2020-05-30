@@ -1,15 +1,9 @@
-import dates as dates
 import pandas as pd
-import matplotlib.pyplot as plt
-import glob
-import pandas as pd
-import datetime as dt
-import time
 import matplotlib.dates as md
-import numpy as np
-import dateutil
+import matplotlib.pyplot as plt
 
-
+#TODO: add fileSha to every file
+fileSha = 1103026
 #-------------------import csv from path -------------------------
 from datetime import datetime
 # # get data file names
@@ -54,9 +48,9 @@ day1 = day[["Sha1ID", "FileNameId", "ReportTime", "MachineGuidID"]]
 
 #--------------------create a dataSet to a speceific file------------------------------
 day1.sort_values(by=['Sha1ID', 'ReportTime'], ascending=[True, True], inplace=True)
-oneMechine = day1.loc[day1['Sha1ID'] == 5382575]
-files=[]
-files.append(oneMechine)
+oneMachine = day1.loc[day1['Sha1ID'] == fileSha]
+files = []
+files.append(oneMachine)
 files[0] = pd.DataFrame(files[0])
 files[0].rename(columns={"ReportTime": "time", "MachineGuidID": "machine"}, inplace=True, errors="raise")
 
@@ -72,7 +66,7 @@ for i in range(len(files)):
 i = 0
 hourSet = []
 for i in range(len(files)):
-    if (i==13):
+    if (i == 13):
         print("fg")
     files[i]['time'] = pd.to_datetime(files[i]['time'])
     hourSet.append(files[i].groupby([pd.Grouper(key='time', freq='H')]).size().reset_index(name='count'))
@@ -85,27 +79,26 @@ for i in range(len(files)):
     files[i]['time'] = pd.to_datetime(files[i]['time'])
     daySet.append(files[i].groupby([pd.Grouper(key='time', freq='D')]).size().reset_index(name='count'))
 
-print("A")
 
 #------get time set of all hours between 1/1 to 11/1 vs number of machines.------------
 #------ranged by hour----
 HourDeltas = pd.Series(pd.date_range(start='2017-01-01', end='2017-01-12', freq='H'))
 HourDeltasList = [[hour,0] for hour in HourDeltas]
-hourRangeVSmachine=[]
+hourRangeVSmachine = []
 
 for i in range(len(files)):
     hourRangeVSmachine.append(pd.DataFrame(HourDeltasList, columns=['time', 'count']))
-    hourRangeVSmachine[i]=hourSet[i].append(hourRangeVSmachine[i], ignore_index=True)
+    hourRangeVSmachine[i] = hourSet[i].append(hourRangeVSmachine[i], ignore_index=True)
     hourRangeVSmachine[i].drop_duplicates('time', keep="first", inplace=True)
     hourRangeVSmachine[i].sort_values(by=['time'], ascending=[True], inplace=True)
 
 #----ranged by day----
 DaysDeltas = pd.Series(pd.date_range(start='2017-01-01', end='2017-01-12', freq='D'))
 DayDeltasList = [[day,0] for day in DaysDeltas]
-dayRangeVSmachine=[]
+dayRangeVSmachine = []
 for i in range(len(files)):
     dayRangeVSmachine.append(pd.DataFrame(DayDeltasList, columns=['time', 'count']))
-    dayRangeVSmachine[i]=daySet[i].append(dayRangeVSmachine[i], ignore_index=True)
+    dayRangeVSmachine[i] = daySet[i].append(dayRangeVSmachine[i], ignore_index=True)
     dayRangeVSmachine[i].drop_duplicates('time', keep="first", inplace=True)
     dayRangeVSmachine[i].sort_values(by=['time'], ascending=[True], inplace=True)
 
@@ -127,12 +120,11 @@ for i in range(len(files)):
     ax.xaxis.set_major_locator(plt.MaxNLocator(22))
     plt.gca().xaxis.set_minor_locator(md.HourLocator())
     plt.plot(dates, valuesList, "o-")
-    print("x")
     rangeCount = range(min(hourSet[i]['count']), max(hourSet[i]['count']) + 1)
     plt.yticks(rangeCount)
-    plt.title("file {0} machine per hour".format(i))
-    plt.ylabel('machines')
-    plt.xlabel('hours')
+    plt.title("file {0}: Machine per Hour".format(fileSha))
+    plt.ylabel('Machines')
+    plt.xlabel('Hours')
     ax.set_xlim(xmin=min(HourDeltas))
     ax.set_ylim(ymin=0)
     plt.tick_params(axis='x', which='major', labelsize=7)
@@ -155,12 +147,11 @@ for i in range(len(files)):
     ax.xaxis.set_major_formatter(xfmt)
     ax.xaxis.set_major_locator(plt.MaxNLocator(11))
     plt.plot(dates, valuesList, "o-")
-    print("x")
     rangeCount = range(min(daySet[i]['count']), max(daySet[i]['count']) + 1)
     plt.yticks(rangeCount)
-    plt.title("file {0} nachine per day".format(i))
-    plt.ylabel('machines')
-    plt.xlabel('days')
+    plt.title("file {0}: Machine per Day".format(fileSha))
+    plt.ylabel('Machines')
+    plt.xlabel('Days')
     ax.set_xlim(xmin=min(DaysDeltas))
     ax.set_ylim(ymin=0)
     plt.tick_params(axis='x', which='major', labelsize=7)
@@ -176,9 +167,10 @@ for i in range(len(files)):
 # What is the difference between the daily and the hourly scale?
 # Which one should be used? Etc.
 # Include in your report some TS graphs and statistics from the analysis you perform and describe any insights you gained.
-    #Avarage per hour
-    perDayAvarageMachine=dayRangeVSmachine[i].mean()
-    print("file {0} Avarage per hour is: {1}".format(i),perDayAvarageMachine[0])
-    # Avarage per std
-    fileStd = hourRangeVSmachine[i].std()
-    print("file {0} std: {1}".format(i),fileStd[0])
+
+    #Average per day
+    perDayAverageMachine = dayRangeVSmachine[i].mean()
+    print("file {}: Average machine count per day is: {:.3f}".format(fileSha, perDayAverageMachine[i]))
+    # Std
+    fileStd = dayRangeVSmachine[i].std()
+    print("file {}: Standard deviation is: {:.3f}".format(fileSha, fileStd[i]))
