@@ -51,9 +51,10 @@ day1 = day[["Sha1ID", "FileNameId", "ReportTime", "MachineGuidID"]]
 #                 [day1.iloc[i][0], day1.iloc[i][1], day1.iloc[i][2], day1.iloc[i][3]]
 #             )
 # files[j] = pd.DataFrame(files[j], columns=["sha", "name", "time", "machine"])
-#--------------------create a dataSet to a specific file------------------------------
+
+#--------------------create a dataSet to a speceific file------------------------------
 day1.sort_values(by=['Sha1ID', 'ReportTime'], ascending=[True, True], inplace=True)
-oneMechine = day1.loc[day1['Sha1ID'] == 5323043]
+oneMechine = day1.loc[day1['Sha1ID'] == 5382575]
 files=[]
 files.append(oneMechine)
 files[0] = pd.DataFrame(files[0])
@@ -67,52 +68,71 @@ for i in range(len(files)):
 
 
 #-------------------create time set to each file dataset - machine vs hours-----------------
+#------------hourSet - hour vs machine----------------
 i = 0
-timeSets = []
+hourSet = []
 for i in range(len(files)):
     if (i==13):
         print("fg")
     files[i]['time'] = pd.to_datetime(files[i]['time'])
-    timeSets.append(files[i].groupby([pd.Grouper(key='time',freq='H')]).size().reset_index(name='count'))
+    hourSet.append(files[i].groupby([pd.Grouper(key='time', freq='H')]).size().reset_index(name='count'))
+#------------ daySet-day vs machine-----------------
+i = 0
+daySet = []
+for i in range(len(files)):
+    if (i == 13):
+        print("fg")
+    files[i]['time'] = pd.to_datetime(files[i]['time'])
+    daySet.append(files[i].groupby([pd.Grouper(key='time', freq='D')]).size().reset_index(name='count'))
+
 print("A")
 
 #------get time set of all hours between 1/1 to 11/1 vs number of machines.------------
-#ranged by hour
+#------ranged by hour----
 HourDeltas = pd.Series(pd.date_range(start='2017-01-01', end='2017-01-12', freq='H'))
 HourDeltasList = [[hour,0] for hour in HourDeltas]
-timeRangeVSmacine=[]
+hourRangeVSmachine=[]
 
 for i in range(len(files)):
-    timeRangeVSmacine.append(pd.DataFrame(HourDeltasList, columns=['time', 'count']))
-    timeRangeVSmacine[i]=timeSets[i].append(timeRangeVSmacine[i],ignore_index=True)
-    timeRangeVSmacine[i].drop_duplicates('time', keep="first", inplace=True)
-    timeRangeVSmacine[i].sort_values(by=['time'], ascending=[True], inplace=True)
+    hourRangeVSmachine.append(pd.DataFrame(HourDeltasList, columns=['time', 'count']))
+    hourRangeVSmachine[i]=hourSet[i].append(hourRangeVSmachine[i], ignore_index=True)
+    hourRangeVSmachine[i].drop_duplicates('time', keep="first", inplace=True)
+    hourRangeVSmachine[i].sort_values(by=['time'], ascending=[True], inplace=True)
 
-#-------------------print Graph machine vs hours-----------------
+#----ranged by day----
+DaysDeltas = pd.Series(pd.date_range(start='2017-01-01', end='2017-01-12', freq='D'))
+DayDeltasList = [[day,0] for day in DaysDeltas]
+dayRangeVSmachine=[]
+for i in range(len(files)):
+    dayRangeVSmachine.append(pd.DataFrame(DayDeltasList, columns=['time', 'count']))
+    dayRangeVSmachine[i]=daySet[i].append(dayRangeVSmachine[i], ignore_index=True)
+    dayRangeVSmachine[i].drop_duplicates('time', keep="first", inplace=True)
+    dayRangeVSmachine[i].sort_values(by=['time'], ascending=[True], inplace=True)
 
-i = 0
-for i in range(len(timeSets)):
-    plt.figure(figsize=(12, 6))
+#-------------------plot Graph machine vs time-----------------
 
-    hours = timeSets[i]['time']
+# i = 0
+# for i in range(len(hourSet)):
+    # ---------plot hour vs machine----------
+    plt.figure(figsize=(12, 8))
+    hours = hourSet[i]['time']
     dates = [pd.to_datetime(ts) for ts in hours]
-    values = timeSets[i]['count']
+    values = hourSet[i]['count']
     valuesList = [ts for ts in values]
-    plt.subplots_adjust(bottom=0.1)
+    plt.subplots_adjust(bottom=0.25)
     plt.xticks(rotation=50)
     ax = plt.gca()
-    xfmt = md.DateFormatter('%Y-%m-%d\n%H:%M:%S')
+    xfmt = md.DateFormatter('%d-%m-%Y\n%H:%M:%S')
     ax.xaxis.set_major_formatter(xfmt)
     ax.xaxis.set_major_locator(plt.MaxNLocator(22))
     plt.gca().xaxis.set_minor_locator(md.HourLocator())
     plt.plot(dates, valuesList, "o-")
     print("x")
-    rangeCount = range(min(timeSets[i]['count']),max(timeSets[i]['count'])+1)
+    rangeCount = range(min(hourSet[i]['count']), max(hourSet[i]['count']) + 1)
     plt.yticks(rangeCount)
-    plt.title("file {0}".format(i))
+    plt.title("file {0} machine per hour".format(i))
     plt.ylabel('machines')
     plt.xlabel('hours')
-
     ax.set_xlim(xmin=min(HourDeltas))
     ax.set_ylim(ymin=0)
     plt.tick_params(axis='x', which='major', labelsize=7)
@@ -120,7 +140,45 @@ for i in range(len(timeSets)):
     plt.grid(b=True, which='major', color='#666666', linestyle='-')
     plt.minorticks_on()
     plt.grid(b=True, which='minor', color='#999999', linestyle='-', alpha=0.2)
-
+    plt.show()
+#for i in range(len(daySet)):
+    # ---------plot day vs machine----------
+    plt.figure(figsize=(12, 8))
+    days = daySet[i]['time']
+    dates = [pd.to_datetime(ts) for ts in days]
+    values = daySet[i]['count']
+    valuesList = [ts for ts in values]
+    plt.subplots_adjust(bottom=0.25)
+    plt.xticks(rotation=35)
+    ax = plt.gca()
+    xfmt = md.DateFormatter('%d-%m-%Y')
+    ax.xaxis.set_major_formatter(xfmt)
+    ax.xaxis.set_major_locator(plt.MaxNLocator(11))
+    plt.plot(dates, valuesList, "o-")
+    print("x")
+    rangeCount = range(min(daySet[i]['count']), max(daySet[i]['count']) + 1)
+    plt.yticks(rangeCount)
+    plt.title("file {0} nachine per day".format(i))
+    plt.ylabel('machines')
+    plt.xlabel('days')
+    ax.set_xlim(xmin=min(DaysDeltas))
+    ax.set_ylim(ymin=0)
+    plt.tick_params(axis='x', which='major', labelsize=7)
+    plt.tight_layout()
+    plt.grid(b=True, which='major', color='#666666', linestyle='-')
+    plt.minorticks_on()
+    plt.grid(b=True, which='minor', color='#999999', linestyle='-', alpha=0.2)
     plt.show()
 
-#-------------------
+#---------plot statistics----------
+# what is the average count per day?
+# What is the standard deviation?
+# What is the difference between the daily and the hourly scale?
+# Which one should be used? Etc.
+# Include in your report some TS graphs and statistics from the analysis you perform and describe any insights you gained.
+    #Avarage per hour
+    perDayAvarageMachine=dayRangeVSmachine[i].mean()
+    print("file {0} Avarage per hour is: {1}".format(i),perDayAvarageMachine[0])
+    # Avarage per std
+    fileStd = hourRangeVSmachine[i].std()
+    print("file {0} std: {1}".format(i),fileStd[0])
