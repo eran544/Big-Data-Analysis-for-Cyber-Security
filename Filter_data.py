@@ -26,7 +26,7 @@ def create_dataset():
     files = [[]]
     files[j] = []
     for sha in allData["Sha1ID"]:
-        if i < 100:
+        # if i < 5: #TODO check 
             i = i + 1
             if currF == sha:
                 files[j].append(
@@ -82,11 +82,8 @@ def sortByMachines(files):
     return (daySet,hourSet,len(files))
 
 
-# #-------------seperate files ----------
-# "DailyMachineCount",  "HourlyMachineCount"," MoreThan100"," Malicious" Sha1ID
+ #-------------got from pre function ----------
 (daySet,hourSet,numfiles)=sortByMachines(create_dataset())
-
-
 
 #------get time set of all hours between 1/1 to 11/1 vs number of machines.------------
 HourDeltas = pd.Series(pd.date_range(start='2017-01-01', end='2017-01-12', freq='H'))
@@ -94,17 +91,25 @@ hourRangeVSmachine = []
 DaysDeltas = pd.Series(pd.date_range(start='2017-01-01', end='2017-01-12', freq='D'))
 DayDeltasList = [[day,0,] for day in DaysDeltas]
 dayRangeVSmachine = []
+
+#------data frames that wii contain all the data about the relevent files. in the end will export to csv.------------
+malicious_files = pd.DataFrame([], columns=["Sha1ID","MoreThan100","Malicious","day_Array","hour_Array","mean","std"])
+clean_files = pd.DataFrame([], columns=["Sha1ID","MoreThan100","Malicious","day_Array","hour_Array","mean","std"])
+
 #----------create folders
 maliciousDayPath=create_folder("day Malicious")
 cleanDayPath=create_folder("day Clean")
 maliciousHourPath=create_folder("Hour Malicious")
 cleanHourPath=create_folder("Hour Clean")
 
+
 for i in range(numfiles):
-    # "DailyMachineCount",  "HourlyMachineCount"," MoreThan100"," Malicious"
+
+    # ------data about file i----
     fileSha=daySet[i]["Sha1ID"][0]
     MoreThan100 = daySet[i]["MoreThan100"][0]
     Malicious = daySet[i]["Malicious"][0]
+
     # ------ranged by hour----
     HourDeltasList = [[hour, 0] for hour in HourDeltas]
     hourRangeVSmachine.append(pd.DataFrame(HourDeltasList, columns=["ReportTime", 'HourlyMachineCount']))
@@ -114,6 +119,8 @@ for i in range(numfiles):
     hourRangeVSmachine[i]["Sha1ID"]=fileSha
     hourRangeVSmachine[i]["MoreThan100"] = MoreThan100
     hourRangeVSmachine[i]["Malicious"] = Malicious
+    hour_Array=hourRangeVSmachine[i]["HourlyMachineCount"].to_numpy()
+
     #----ranged by day----
     dayRangeVSmachine.append(pd.DataFrame(DayDeltasList, columns=['ReportTime', 'DailyMachineCount']))
     dayRangeVSmachine[i] = daySet[i].append(dayRangeVSmachine[i], ignore_index=True)
@@ -122,10 +129,25 @@ for i in range(numfiles):
     dayRangeVSmachine[i]["Sha1ID"] = fileSha
     dayRangeVSmachine[i]["MoreThan100"] = MoreThan100
     dayRangeVSmachine[i]["Malicious"] = Malicious
+    day_Array=dayRangeVSmachine[i]["DailyMachineCount"].to_numpy()
 
-#TODO:fix gragh
+    # --------- statistics---------
+    # Average per day
+    mean = dayRangeVSmachine[i]["DailyMachineCount"].mean()
+    daySet[i]['mean'] = mean
+    #print("file {}: Average machine count per day is: {:.3f}".format(fileSha, perDayAverageMachine))
+    # Std
+    std = dayRangeVSmachine[i]["DailyMachineCount"].std()
+    daySet[i]['std'] = std
+    #print("file {}: Standard deviation is: {:.3f}".format(fileSha, fileStd))
+
+    # --------- data line---------
+    data_for_file = pd.DataFrame([[fileSha,MoreThan100,Malicious,day_Array,hour_Array,mean,std]],columns=["Sha1ID","MoreThan100","Malicious","day_Array","hour_Array","mean","std"])
+
+
 #-------------------plot Graph machine vs time-----------------
     # ---------plot hour vs machine----------
+    # TODO:fix gragh
     plt.figure(figsize=(12, 6))
     hours = hourSet[i]['ReportTime']
     dates = [pd.to_datetime(ts) for ts in hours]
@@ -154,15 +176,17 @@ for i in range(numfiles):
     plt.grid(b=True, which='minor', color='#999999', linestyle='-', alpha=0.2)
     #fig = plt.figure()
 
-
+    #-----------saves hour grap and data
     if (Malicious):
         path = os.path.join(maliciousHourPath, "file {0}.png".format(fileSha))
-    #else if(MoreThan100): #TODO
+        malicious_files.append(data_for_file)
     else:
-        path = os.path.join(cleanHourPath, "file {0}.png".format(fileSha))
+        if(MoreThan100):
+            path = os.path.join(cleanHourPath, "file {0}.png".format(fileSha))
+            clean_files= clean_files.append(data_for_file, ignore_index=True)
     plt.savefig(path)
     #plt.show()
-
+#todo fix
     # ---------plot day vs machine----------
     plt.figure(figsize=(12, 8))
     days = daySet[i]['ReportTime']
@@ -189,31 +213,21 @@ for i in range(numfiles):
     plt.minorticks_on()
     plt.grid(b=True, which='minor', color='#999999', linestyle='-', alpha=0.2)
 
-
+    #-----------saves day grap------
     if (Malicious):
         path = os.path.join(maliciousDayPath, "file {0}.png".format(fileSha))
-        # else if(MoreThan100): #TODO
     else:
-        path = os.path.join(cleanDayPath, "file {0}.png".format(fileSha))
+        if (MoreThan100):
+           path = os.path.join(cleanDayPath, "file {0}.png".format(fileSha))
 
     plt.savefig(path)
    # plt.show()
-    #---------plot statistics----------
-    # what is the average count per day?
-    # What is the standard deviation?
-    # What is the difference between the daily and the hourly scale?
-    # Which one should be used? Etc.
-    # Include in your report some TS graphs and statistics from the analysis you perform and describe any insights you gained.
 
-    #Average per day
-    perDayAverageMachine = dayRangeVSmachine[i]["DailyMachineCount"].mean()
-    daySet[i]['mean'] = perDayAverageMachine
-    print("file {}: Average machine count per day is: {:.3f}".format(fileSha, perDayAverageMachine))
-    # Std
-    fileStd = dayRangeVSmachine[i]["DailyMachineCount"].std()
-    daySet[i]['std'] = perDayAverageMachine
-    print("file {}: Standard deviation is: {:.3f}".format(fileSha, fileStd))
-#-------------save---------
+#-------------saves malicious data csv  in maliciousDay and clean data csv in cleanDay ---------
+malicious_files.to_csv(os.path.join(maliciousDayPath, "malicious files data.csv"))
+clean_files.to_csv(os.path.join(cleanDayPath, "clean files data.csv"))
+#todo fix '/n' in malicious_files,clean_files where dayArray. on csv it doesnt show all the list
+
 
 print("A")
 # # save file
