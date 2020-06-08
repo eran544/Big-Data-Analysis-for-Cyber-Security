@@ -26,7 +26,7 @@ def create_dataset():
     files = [[]]
     files[j] = []
     for sha in allData["Sha1ID"]:
-        # if i < 5: #TODO check 
+         if i < 100: #TODO check
             i = i + 1
             if currF == sha:
                 files[j].append(
@@ -179,12 +179,15 @@ for i in range(numfiles):
     #-----------saves hour grap and data
     if (Malicious):
         path = os.path.join(maliciousHourPath, "file {0}.png".format(fileSha))
-        malicious_files.append(data_for_file)
+        malicious_files=malicious_files.append(data_for_file, ignore_index=True)
+        plt.savefig(path)
     else:
         if(MoreThan100):
             path = os.path.join(cleanHourPath, "file {0}.png".format(fileSha))
             clean_files= clean_files.append(data_for_file, ignore_index=True)
-    plt.savefig(path)
+            plt.savefig(path)
+    plt.clf()
+    plt.close()
     #plt.show()
 #todo fix
     # ---------plot day vs machine----------
@@ -216,11 +219,14 @@ for i in range(numfiles):
     #-----------saves day grap------
     if (Malicious):
         path = os.path.join(maliciousDayPath, "file {0}.png".format(fileSha))
+        plt.savefig(path)
     else:
         if (MoreThan100):
            path = os.path.join(cleanDayPath, "file {0}.png".format(fileSha))
-
-    plt.savefig(path)
+           plt.savefig(path)
+    plt.clf()
+    plt.close()
+    # plt.savefig(path)
    # plt.show()
 
 #-------------saves malicious data csv  in maliciousDay and clean data csv in cleanDay ---------
@@ -233,7 +239,7 @@ print("A")
 # # save file
 # path=create_folder("hourSet Filse")
 # hourSet[i].to_csv(path)
-# daySet[i].to_csv('daySet file {0}.csv'.format(hourSet[i]["Sha1ID"][0]))
+daySet[i].to_csv('daySet file {0}.csv'.format(hourSet[i]["Sha1ID"][0]))
 
-# hourSet[i].to_csv('hourSet file {0}.csv'.format(hourSet[i]["Sha1ID"][0]))
+hourSet[i].to_csv('hourSet file {0}.csv'.format(hourSet[i]["Sha1ID"][0]))
 # Make sure you don’t exclude them in the analysis! (as they are prevalent)
