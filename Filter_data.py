@@ -238,8 +238,8 @@ clean_files.to_csv(os.path.join(cleanDayPath, "clean files data.csv"))
 print("A")
 # # save file
 # path=create_folder("hourSet Filse")
-# hourSet[i].to_csv(path)
-daySet[i].to_csv('daySet file {0}.csv'.format(hourSet[i]["Sha1ID"][0]))
-
-hourSet[i].to_csv('hourSet file {0}.csv'.format(hourSet[i]["Sha1ID"][0]))
-# Make sure you don’t exclude them in the analysis! (as they are prevalent)
+# # hourSet[i].to_csv(path)
+# daySet[i].to_csv('daySet file {0}.csv'.format(hourSet[i]["Sha1ID"][0]))
+#
+# hourSet[i].to_csv('hourSet file {0}.csv'.format(hourSet[i]["Sha1ID"][0]))
+# # Make sure you don’t exclude them in the analysis! (as they are prevalent)
