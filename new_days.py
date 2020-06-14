@@ -143,8 +143,8 @@ for i in range(numfiles):
    # plt.show()
 
 #-------------saves malicious data csv  in maliciousDay and clean data csv in cleanDay ---------
-malicious_files.to_csv(os.path.join(maliciousDayPath, "malicious files data.csv"))
-clean_files.to_csv(os.path.join(cleanDayPath, "clean files data.csv"))
+malicious_files.to_csv(os.path.join(maliciousDayPath, "malicious files day data.csv"))
+clean_files.to_csv(os.path.join(cleanDayPath, "clean files day data.csv"))
 #todo fix '/n' in malicious_files,clean_files where dayArray. on csv it doesnt show all the list
 
 
