@@ -19,8 +19,6 @@ def create_folder(dirName):
 #----------create folders
 maliciousDayPath=create_folder("day Malicious")
 cleanDayPath=create_folder("day Clean")
-# maliciousHourPath=create_folder("Hour Malicious")
-# cleanHourPath=create_folder("Hour Clean")
 
 daySet1 = pd.read_csv("daySet.csv",header=0)[["ReportTime", "Sha1ID", "Malicious", "DailyMachineCount", "MoreThan100"]]
 i = -1
@@ -145,10 +143,9 @@ for i in range(numfiles):
 #-------------saves malicious data csv  in maliciousDay and clean data csv in cleanDay ---------
 malicious_files.to_csv(os.path.join(maliciousDayPath, "malicious files day data.csv"))
 clean_files.to_csv(os.path.join(cleanDayPath, "clean files day data.csv"))
-#todo fix '/n' in malicious_files,clean_files where dayArray. on csv it doesnt show all the list
 
 
-print("A")
+print("END day")
 # # save file
 # path=create_folder("hourSet Filse")
 # # hourSet[i].to_csv(path)
