@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 import os
 import matplotlib.dates as md
 
-
+# Gets "hourSet.csv"- all files hours dataset
+# Returns "Hour Malicious" and "Hour Clean" folders that contain graphs and "malicious files hour data.csv" , "clean files hour data.csv"
 def create_folder(dirName):
     parent_dir = os.getcwd()
     path = os.path.join(parent_dir, dirName)

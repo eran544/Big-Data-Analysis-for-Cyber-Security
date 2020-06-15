@@ -2,6 +2,11 @@ import pandas as pd
 import os
 import matplotlib.dates as md
 import matplotlib.pyplot as plt
+#Gets "data.csv" - all data given to us
+#filters it by malicious and clean and by day and by hour
+# creates folders "day Malicious" ,"day Clean","Hour Malicious","Hour Clean"
+#saves each graphs in his relevant folder
+#saves "malicious files data.csv" and "clean files data.csv"
 
 def create_folder(dirName):
     parent_dir = os.getcwd()

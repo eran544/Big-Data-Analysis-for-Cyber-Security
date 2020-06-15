@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import os
 import matplotlib.dates as md
 
+# Gets ""daySet.csv"- all files day dataset
+# Returns "day Malicious" and "day Clean" folders that contain graphs and "malicious files day data.csv" , "clean files day data.csv"
 
 def create_folder(dirName):
     parent_dir = os.getcwd()
