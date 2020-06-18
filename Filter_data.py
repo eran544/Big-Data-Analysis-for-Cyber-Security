@@ -182,7 +182,7 @@ for i in range(numfiles):
         malicious_files=malicious_files.append(data_for_file, ignore_index=True)
         plt.savefig(path)
     else:
-        if(MoreThan100):
+        if(True):
             path = os.path.join(cleanHourPath, "file {0}.png".format(fileSha))
             clean_files= clean_files.append(data_for_file, ignore_index=True)
             plt.savefig(path)
@@ -221,7 +221,7 @@ for i in range(numfiles):
         path = os.path.join(maliciousDayPath, "file {0}.png".format(fileSha))
         plt.savefig(path)
     else:
-        if (MoreThan100):
+        if (True):
            path = os.path.join(cleanDayPath, "file {0}.png".format(fileSha))
            plt.savefig(path)
     plt.clf()
