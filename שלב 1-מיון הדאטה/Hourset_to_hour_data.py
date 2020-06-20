@@ -21,7 +21,7 @@ def create_folder(dirName):
 maliciousHourPath=create_folder("Hour Malicious")
 cleanHourPath=create_folder("Hour Clean")
 
-hourSet1 = pd.read_csv("hourSet.csv",header=0)[["ReportTime", "Sha1ID", "Malicious", "HourlyMachineCount", "MoreThan100"]]
+hourSet1 = pd.read_csv("hourSet.csv",header=0)[["ReportTime", "Sha1ID", "Malicious", "HourlyMachineCount", "MoreThan100", "Size"]]
 i = -1
 j = 0
 currF = hourSet1.iloc[0][1]
@@ -33,18 +33,18 @@ for sha in hourSet1["Sha1ID"]:
     i = i + 1
     if currF == sha:
         hourSet[j].append(
-            [hourSet1.iloc[i][0], hourSet1.iloc[i][1], hourSet1.iloc[i][2], hourSet1.iloc[i][3], hourSet1.iloc[i][4]]
+            [hourSet1.iloc[i][0], hourSet1.iloc[i][1], hourSet1.iloc[i][2], hourSet1.iloc[i][3], hourSet1.iloc[i][4], hourSet1.iloc[i][5]]
         )
     else:
-        hourSet[j] = pd.DataFrame(hourSet[j], columns=["ReportTime", "Sha1ID", "Malicious", "HourlyMachineCount", "MoreThan100"])
+        hourSet[j] = pd.DataFrame(hourSet[j], columns=["ReportTime", "Sha1ID", "Malicious", "HourlyMachineCount", "MoreThan100","Size"])
         hourSet[j]['ReportTime'] = pd.to_datetime(hourSet[j]['ReportTime'],dayfirst=True)
         currF = sha
         j = j + 1
         hourSet.append([])
         hourSet[j].append(
-            [hourSet1.iloc[i][0], hourSet1.iloc[i][1], hourSet1.iloc[i][2], hourSet1.iloc[i][3], hourSet1.iloc[i][4]]  )
+            [hourSet1.iloc[i][0], hourSet1.iloc[i][1], hourSet1.iloc[i][2], hourSet1.iloc[i][3], hourSet1.iloc[i][4], hourSet1.iloc[i][4]]  )
 
-hourSet[j] = pd.DataFrame(hourSet[j], columns=["ReportTime", "Sha1ID", "Malicious", "HourlyMachineCount", "MoreThan100"])
+hourSet[j] = pd.DataFrame(hourSet[j], columns=["ReportTime", "Sha1ID", "Malicious", "HourlyMachineCount", "MoreThan100", "Size"])
 hourSet[j]['ReportTime'] = pd.to_datetime(hourSet[j]['ReportTime'], dayfirst=True)
 
 numfiles = len(hourSet)
@@ -57,20 +57,21 @@ HourDeltasList = [[hour, 0] for hour in HourDeltas]
 hourRangeVSmachine = []
 
 #------data frames that wii contain all the data about the relevent files. in the end will export to csv.------------
-malicious_files = pd.DataFrame([], columns=["Sha1ID","MoreThan100","Malicious","day_Array","hour_Array"])
-clean_files = pd.DataFrame([], columns=["Sha1ID","MoreThan100","Malicious","day_Array","hour_Array"])
+malicious_files = pd.DataFrame([], columns=["Sha1ID","MoreThan100","Malicious","day_Array","hour_Array","Size"])
+clean_files = pd.DataFrame([], columns=["Sha1ID","MoreThan100","Malicious","day_Array","hour_Array","Size"])
 
 #----------create folders
 maliciousDayPath=create_folder("hour Malicious")
 cleanDayPath=create_folder("hour Clean")
 
 for i in range(numfiles):
-
+    if i%5000 == 0:
+        print(i)
     # ------data about file i----
     fileSha=hourSet[i]["Sha1ID"][0]
     MoreThan100 = hourSet[i]["MoreThan100"][0]
     Malicious = hourSet[i]["Malicious"][0]
-
+    Size = hourSet[i]["Size"][0]
 
     #----ranged by Hour----
     hourRangeVSmachine.append(pd.DataFrame(HourDeltasList, columns=["ReportTime", 'HourlyMachineCount']))
@@ -86,55 +87,55 @@ for i in range(numfiles):
     # --------- statistics---------
 
     # --------- data line---------
-    data_for_file = pd.DataFrame([[fileSha,MoreThan100,Malicious,hour_Array]],columns=["Sha1ID","MoreThan100","Malicious","hour_Array"])
+    data_for_file = pd.DataFrame([[fileSha,MoreThan100,Malicious,hour_Array, Size]],columns=["Sha1ID","MoreThan100","Malicious","hour_Array","size"])
 
 
 #-------------------plot Graph machine vs time-----------------
 
     # ---------plot hour vs machine----------
     # TODO:fix gragh
-    if(i==numfiles-1):
-        print("A")
-    plt.figure(figsize=(12, 6))
-    hours = hourSet[i]['ReportTime']
-    dates = [pd.to_datetime(ts) for ts in hours]
-    values = hourSet[i]['HourlyMachineCount']
-    valuesList = [ts for ts in values]
-
-    plt.subplots_adjust(bottom=0.25)
-    plt.xticks(rotation=50)
-    ax = plt.gca()
-    xfmt = md.DateFormatter('%d-%m-%Y\n%H:%M:%S')
-    ax.xaxis.set_major_formatter(xfmt)
-    ax.xaxis.set_major_locator(plt.MaxNLocator(22))
-   # plt.gca().xaxis.set_minor_locator(md.HourLocator())
-    plt.plot(dates, valuesList, "o-")
-    rangeCount = range(min(hourSet[i]['HourlyMachineCount']), max(hourSet[i]['HourlyMachineCount']) + 1)
-    plt.yticks(rangeCount)
-    plt.title("file {0}: Machine per Hour".format(fileSha))
-    plt.ylabel('Machines')
-    plt.xlabel('Hours')
-    ax.set_xlim(xmin=min(HourDeltas))
-    ax.set_ylim(ymin=0)
-    plt.tick_params(axis='x', which='major', labelsize=7)
-    plt.tight_layout()
-    plt.grid(b=True, which='major', color='#666666', linestyle='-')
-    plt.minorticks_on()
-    plt.grid(b=True, which='minor', color='#999999', linestyle='-', alpha=0.2)
-    #fig = plt.figure()
-
-    #-----------saves hour grap and data
-    if (Malicious):
-        path = os.path.join(maliciousHourPath, "file {0}.png".format(fileSha))
-        malicious_files=malicious_files.append(data_for_file, ignore_index=True)
-        plt.savefig(path)
-    else:
-        if(MoreThan100):
-            path = os.path.join(cleanHourPath, "file {0}.png".format(fileSha))
-            clean_files= clean_files.append(data_for_file, ignore_index=True)
-            plt.savefig(path)
-    plt.clf()
-    plt.close()
+   #  if(i==numfiles-1):
+   #      print("A")
+   #  plt.figure(figsize=(12, 6))
+   #  hours = hourSet[i]['ReportTime']
+   #  dates = [pd.to_datetime(ts) for ts in hours]
+   #  values = hourSet[i]['HourlyMachineCount']
+   #  valuesList = [ts for ts in values]
+   #
+   #  plt.subplots_adjust(bottom=0.25)
+   #  plt.xticks(rotation=50)
+   #  ax = plt.gca()
+   #  xfmt = md.DateFormatter('%d-%m-%Y\n%H:%M:%S')
+   #  ax.xaxis.set_major_formatter(xfmt)
+   #  ax.xaxis.set_major_locator(plt.MaxNLocator(22))
+   # # plt.gca().xaxis.set_minor_locator(md.HourLocator())
+   #  plt.plot(dates, valuesList, "o-")
+   #  rangeCount = range(min(hourSet[i]['HourlyMachineCount']), max(hourSet[i]['HourlyMachineCount']) + 1)
+   #  plt.yticks(rangeCount)
+   #  plt.title("file {0}: Machine per Hour".format(fileSha))
+   #  plt.ylabel('Machines')
+   #  plt.xlabel('Hours')
+   #  ax.set_xlim(xmin=min(HourDeltas))
+   #  ax.set_ylim(ymin=0)
+   #  plt.tick_params(axis='x', which='major', labelsize=7)
+   #  plt.tight_layout()
+   #  plt.grid(b=True, which='major', color='#666666', linestyle='-')
+   #  plt.minorticks_on()
+   #  plt.grid(b=True, which='minor', color='#999999', linestyle='-', alpha=0.2)
+   #  #fig = plt.figure()
+   #
+   #  #-----------saves hour grap and data
+   #  if (Malicious):
+   #      path = os.path.join(maliciousHourPath, "file {0}.png".format(fileSha))
+    malicious_files=malicious_files.append(data_for_file, ignore_index=True)
+   #      plt.savefig(path)
+   #  else:
+   #      if(MoreThan100):
+   #          path = os.path.join(cleanHourPath, "file {0}.png".format(fileSha))
+    clean_files= clean_files.append(data_for_file, ignore_index=True)
+   #          plt.savefig(path)
+   #  plt.clf()
+   #  plt.close()
     #plt.show()
 #-------------saves malicious data csv  in maliciousDay and clean data csv in cleanDay ---------
 malicious_files.to_csv(os.path.join(maliciousHourPath, "malicious files hour data.csv"))
