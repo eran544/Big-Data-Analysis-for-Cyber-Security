@@ -12,7 +12,7 @@ import csv
 
 import matplotlib.dates as md
 import matplotlib.pyplot as plt
-
+import os
 # Gets "clean files day data.csv"
 # return distances
 
@@ -21,16 +21,16 @@ class minDistances:
     def __init__(self, num_files, K):
         self.k = K
         self.num_files = num_files
-        self.min_data = [[(999999, 0, 0) for _ in range(K)] for _ in range(num_files)]      #k-min distances per file
-        self.distances = [[999999 for _ in range(num_files)] for _ in range(num_files)]      #distance per file
+        self.min_data = [[(float('Inf'), 0, 0) for _ in range(K)] for _ in range(num_files)]      #k-min distances per file
+        self.distances = [[float('Inf') for _ in range(num_files)] for _ in range(num_files)]      #distance per file
         self.all_data = []      #distance of all files
         # self.mean_distances_min = []
         # self.std_distances_min = []
         self.statistics = []
 
     def insert_distances(self, i, j, value):
-        self.distances[i].insert(j, value)
-        self.distances[j].insert(i, value)
+        self.distances[i][j]= value
+        self.distances[j][i]= value
 
     def insert(self, fileIndex, value):
         (distance, id, malicious) = value
@@ -62,11 +62,32 @@ class minDistances:
         return (dist,isMal)
 
     def calc_statisics(self):
-        for i in range(self.num_files):
-            (dist, isMal) = kbest_clean_Euclidean.get_Kbest_info(0)
-            # self.mean_distances_min.insert(i, statistics.mean(dist))
+        if(self.statistics==[]):
+            self.statistics = pd.DataFrame([],  columns=["k best distances","k is malicius","k's mean","k's median", "k's std","k's malicios percentage","k's clean percentage","all's mean", "all's median","all's std_i"])
+            stats=[]
+            for i in range(self.num_files):
+                #-----k best----
+                (k_dist, k_isMal) = self.get_Kbest_info(i)
+                k_mean_i= np.mean(k_dist)
+                k_median_i = np.median(k_dist)
+                k_std_i =np.std(k_dist)
+                k_mal_precent=k_isMal.count(True)*100/self.k
+                k_clean_precent = k_isMal.count(False) * 100 / self.k
 
+                # -----all data----
+                all_dist_i = self.distances[i]
+                all_dist_i[i]=0 #remove inf in dist(self,self)
+                all_dist_mean = np.mean(all_dist_i)
+                all_dist_median_i = np.median(all_dist_i)
+                all_dist_std_i = np.std(all_dist_i)
+                max_dist=max(all_dist_i)
+                min_dist=k_dist[0]
 
+                data_for_file = pd.DataFrame([[k_dist,k_isMal,k_mean_i,k_median_i, k_std_i,k_mal_precent,k_clean_precent, all_dist_mean, all_dist_median_i, all_dist_std_i,max_dist,min_dist]],
+                                             columns=["k best distances","k is malicius","k's mean","k's median",
+                                                      "k's std","k's malicios percentage","k's clean percentage","all's mean", "all's median","all's std_i","max dist","min dist"])
+                self.statistics = self.statistics.append(data_for_file, ignore_index=True)
+        return self.statistics
 def recenter(arr, arr_center):
     items = deque(arr)
     for i in range(len(arr)):
@@ -90,7 +111,7 @@ for i in range(0, len(cleanDay)):
     id1 = cleanDay.iloc[i]["Sha1ID"]
     mal1 = cleanDay.iloc[i]["Malicious"]
 
-    for j in range(i + 1, len(cleanDay)-1):
+    for j in range(i + 1, len(cleanDay)):
         id2 = cleanDay.iloc[j]["Sha1ID"]
         mal2 = cleanDay.iloc[j]["Malicious"]
 
@@ -117,6 +138,7 @@ for i in range(0, len(cleanDay)):
 
         kbest_clean_Euclidean.insert_distances(i, j, res)
         kbest_clean_Euclidean.all_data.append(res)
+
         sum_euclidian = sum_euclidian + res
         # ------ DTW:----------
         x = a.reshape(-1, 1)  # reshape to make it work
@@ -178,23 +200,41 @@ for i in range(0, len(cleanDay)):
 #     i = i + 1
 #     print("\n")
 
-# --------- statistics all files ---------
-average_euclidian = sum_euclidian / counter
-print("Euclidian Average: ",average_euclidian)
-average_dtw = sum_dtw / counter
-print("DTW Average: ",average_dtw)
+# ----------------------------- statistics all files --------------------
+all_stat=data_for_file=pd.DataFrame([],columns=["name", "mean", "median",  "std", "max", "min"])
+#---------- Euclidean: ------------
+Euclidean_statistics=kbest_clean_Euclidean.calc_statisics()
+Euclidian_average = sum_euclidian / counter
+Euclidian_std=kbest_clean_Euclidean.all_data
+Euclidian_median=statistics.median(kbest_clean_Euclidean.all_data)
+Euclidian_Min=min(Euclidean_statistics["min dist"])
+Euclidian_Max=max(Euclidean_statistics["max dist"])
 
-print("Euclidian STD: ", statistics.pstdev(kbest_clean_Euclidean.all_data))
-print("DTW STD: ", statistics.pstdev(kbest_clean_DTW.all_data))
+data_for_file = pd.DataFrame([["Euclidian",Euclidian_average, Euclidian_median, Euclidian_std, Euclidian_Max, Euclidian_Min]],
+                             columns=["name", "mean", "median",  "std", "max", "min"])
+all_stat = all_stat.append(data_for_file, ignore_index=True)
 
-print("Euclidian Max: ", max(kbest_clean_Euclidean.all_data))
-print("DTW Max: ", max(kbest_clean_DTW.all_data))
-
-print("Euclidian Min: ", min(kbest_clean_Euclidean.all_data))
-print("DTW Min: ", min(kbest_clean_DTW.all_data))
+#---------- DTW: ------------
+DTW_statistics=kbest_clean_DTW.calc_statisics()
+DTW_average = sum_dtw / counter
+DTW_std=statistics.pstdev(kbest_clean_DTW.all_data)
+DTW_median=statistics.median(kbest_clean_DTW.all_data)
+DTW_Min=min(DTW_statistics["min dist"])
+DTW_Max=max(DTW_statistics["max dist"])
+data_for_file = pd.DataFrame([["DTW",DTW_average,DTW_median, DTW_std,DTW_Max, DTW_Min]],
+                             columns=["name", "mean", "median",  "std", "max", "min"])
+all_stat = all_stat.append(data_for_file, ignore_index=True)
 
 
 print(z, "files were skipped")
-kbest_clean_Euclidean.calc_statisics()
+
+
+parent_dir = os.getcwd()
+all_stat.to_csv(os.path.join(parent_dir, "all data's statistics.csv"))
+Euclidean_statistics.to_csv(os.path.join(parent_dir, "Euclidean Distances.csv"))
+DTW_statistics.to_csv(os.path.join(parent_dir, "DTW Distances.csv"))
+
+
+
 print("finished")
 
