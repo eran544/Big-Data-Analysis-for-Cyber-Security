@@ -33,6 +33,8 @@ class minDistances:
         self.distances[j][i]= value
 
     def insert(self, fileIndex, value):
+        if (fileIndex == 200):
+            print("a")
         (distance, id, malicious) = value
         if (self.min_data[fileIndex][self.k - 1][0] <= value[0]):
             return False
@@ -47,7 +49,7 @@ class minDistances:
 
     def print_min(self):
         for i in range(self.num_files):
-            print("file {0}: {1}\n".format(cleanDay["Sha1ID"][i], self.min_data[i]))
+            print("file {0}: {1}\n".format(all_data_Day["Sha1ID"][i], self.min_data[i]))
 
     def print_all(self):
         for i in range(len(self.all_data)):
@@ -66,6 +68,8 @@ class minDistances:
             self.statistics = pd.DataFrame([],  columns=["k best distances","k is malicius","k's mean","k's median", "k's std","k's malicios percentage","k's clean percentage","all's mean", "all's median","all's std_i"])
             stats=[]
             for i in range(self.num_files):
+                if (j == 200):
+                    print("a")
                 #-----k best----
                 (k_dist, k_isMal) = self.get_Kbest_info(i)
                 k_mean_i= np.mean(k_dist)
@@ -96,41 +100,42 @@ def recenter(arr, arr_center):
     return np.array(items)
 
 
-k = 3
+k = 15
 cleanDay=pd.read_csv("clean files day data.csv")[["Sha1ID", "day_Array", "Malicious"]]
 malnDay = pd.read_csv("malicious files day data.csv")[["Sha1ID", "day_Array", "Malicious"]]
-
-kbest_clean_Euclidean = minDistances(len(cleanDay), 3)
-kbest_clean_DTW = minDistances(len(cleanDay), 3)
+all_data_Day=pd.concat([malnDay,cleanDay], axis=0,ignore_index=True)
+kbest_clean_Euclidean = minDistances(len(all_data_Day), k)
+kbest_clean_DTW = minDistances(len(all_data_Day), k)
 
 sum_euclidian = 0
 sum_dtw = 0
 counter = 0
 z = 0
-for i in range(0, len(cleanDay)):
-    id1 = cleanDay.iloc[i]["Sha1ID"]
-    mal1 = cleanDay.iloc[i]["Malicious"]
+for i in range(0, len(all_data_Day)):
+    id1 = all_data_Day.iloc[i]["Sha1ID"]
+    mal1 = all_data_Day.iloc[i]["Malicious"]
+    if i==5:
+        print("a")
+    for j in range(i + 1, len(all_data_Day)):
+        id2 = all_data_Day.iloc[j]["Sha1ID"]
+        mal2 = all_data_Day.iloc[j]["Malicious"]
 
-    for j in range(i + 1, len(cleanDay)):
-        id2 = cleanDay.iloc[j]["Sha1ID"]
-        mal2 = cleanDay.iloc[j]["Malicious"]
-
-        a = cleanDay["day_Array"][i]
+        a = all_data_Day["day_Array"][i]
         a = map(int, list(a[1:-1].split()))
         a = np.array([int(s) for s in a])
-        b = cleanDay["day_Array"][j]
+        b = all_data_Day["day_Array"][j]
         b = map(int, list(b[1:-1].split()))
         b = np.array([int(s) for s in b])
-        if sum(a) <= 2 or sum(b) <= 2:
-            z = z + 1
-            break
+        # if sum(a) <= 2 or sum(b) <= 2:
+        #     z = z + 1
+        #     break
         # -------- Centerized Euclidean distance:----------------
         a_center = ndimage.measurements.center_of_mass(a)[0]
         b_center = ndimage.measurements.center_of_mass(b)[0]
 
         a_recenter = recenter(a, a_center)
         b_recenter = recenter(b, b_center)
-        # print("Centerized Euclidean distance for files", cleanDay.iloc[i]["Sha1ID"], cleanDay.iloc[j]["Sha1ID"])
+        # print("Centerized Euclidean distance for files", all_data_Day.iloc[i]["Sha1ID"], all_data_Day.iloc[j]["Sha1ID"])
         # print(np.linalg.norm(a_recenter - b_recenter))
         res=(np.linalg.norm(a_recenter - b_recenter))
         kbest_clean_Euclidean.insert(i,(res,id2,mal2))
@@ -182,7 +187,7 @@ for i in range(0, len(cleanDay)):
 # print("-------------- EUCLIDIAN: --------------")
 # for row in kbest_clean_Euclidean.distances:
 #     average = sum(row) / 108
-#     print("file {0}: \nAverage: {1}".format(cleanDay["Sha1ID"][i], average))
+#     print("file {0}: \nAverage: {1}".format(all_data_Day["Sha1ID"][i], average))
 #     print("STD: ", statistics.pstdev(row))
 #     sum_average = sum_average + average
 #     i = i + 1
@@ -194,14 +199,14 @@ for i in range(0, len(cleanDay)):
 # i = 0
 # for row in kbest_clean_DTW.distances:
 #     average = sum(row) / 108
-#     print("file {0}: \nAverage: {1}".format(cleanDay["Sha1ID"][i], average))
+#     print("file {0}: \nAverage: {1}".format(all_data_Day["Sha1ID"][i], average))
 #     print("STD: ", statistics.pstdev(row))
 #     sum_average = sum_average + average
 #     i = i + 1
 #     print("\n")
 
 # ----------------------------- statistics all files --------------------
-all_stat=data_for_file=pd.DataFrame([],columns=["name", "mean", "median",  "std", "max", "min"])
+all_stat=pd.DataFrame([],columns=["name", "mean", "median",  "std", "max", "min"])
 #---------- Euclidean: ------------
 Euclidean_statistics=kbest_clean_Euclidean.calc_statisics()
 Euclidian_average = sum_euclidian / counter
@@ -224,7 +229,6 @@ DTW_Max=max(DTW_statistics["max dist"])
 data_for_file = pd.DataFrame([["DTW",DTW_average,DTW_median, DTW_std,DTW_Max, DTW_Min]],
                              columns=["name", "mean", "median",  "std", "max", "min"])
 all_stat = all_stat.append(data_for_file, ignore_index=True)
-
 
 print(z, "files were skipped")
 
