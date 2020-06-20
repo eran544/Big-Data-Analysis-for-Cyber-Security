@@ -22,10 +22,11 @@ class minDistances:
         self.k = K
         self.num_files = num_files
         self.min_data = [[(999999, 0, 0) for _ in range(K)] for _ in range(num_files)]      #k-min distances per file
-        self.distances = [[0 for _ in range(num_files)] for _ in range(num_files)]      #distance per file
+        self.distances = [[999999 for _ in range(num_files)] for _ in range(num_files)]      #distance per file
         self.all_data = []      #distance of all files
-        self.mean_distances_min = []
-        self.std_distances_min = []
+        # self.mean_distances_min = []
+        # self.std_distances_min = []
+        self.statistics = []
 
     def insert_distances(self, i, j, value):
         self.distances[i].insert(j, value)
@@ -36,11 +37,11 @@ class minDistances:
         if (self.min_data[fileIndex][self.k - 1][0] <= value[0]):
             return False
         else:
-            self.min_data[fileIndex].pop()
-            for i in range(self.k - 1):
+            for i in range(self.k ):
                 if (self.min_data[fileIndex][i][0] > value[0]):
                     break;
         self.min_data[fileIndex].insert(i, value)
+        self.min_data[fileIndex].pop()
         assert (len(self.min_data[fileIndex]) == self.k)
         return True
 
@@ -52,9 +53,19 @@ class minDistances:
         for i in range(len(self.all_data)):
             print("{0}. {1}\n".format(i, self.all_data[i]))
 
+    def get_Kbest_info(self, fileIndex):
+        dist=[]
+        isMal=[]
+        for (distance, id, malicious) in  self.min_data[fileIndex]:
+            dist.append(distance)
+            isMal.append(malicious)
+        return (dist,isMal)
+
     def calc_statisics(self):
         for i in range(self.num_files):
-            self.mean_distances_min.insert(i, statistics.mean(self.min_data[i]))
+            (dist, isMal) = kbest_clean_Euclidean.get_Kbest_info(0)
+            # self.mean_distances_min.insert(i, statistics.mean(dist))
+
 
 def recenter(arr, arr_center):
     items = deque(arr)
@@ -64,8 +75,9 @@ def recenter(arr, arr_center):
     return np.array(items)
 
 
-k = pd.read_csv("clean files day data.csv")[["Sha1ID", "day_Array", "Malicious"]]
-cleanDay = pd.read_csv("malicious files day data.csv")[["Sha1ID", "day_Array", "Malicious"]]
+k = 3
+cleanDay=pd.read_csv("clean files day data.csv")[["Sha1ID", "day_Array", "Malicious"]]
+malnDay = pd.read_csv("malicious files day data.csv")[["Sha1ID", "day_Array", "Malicious"]]
 
 kbest_clean_Euclidean = minDistances(len(cleanDay), 3)
 kbest_clean_DTW = minDistances(len(cleanDay), 3)
@@ -180,6 +192,7 @@ print("DTW Max: ", max(kbest_clean_DTW.all_data))
 
 print("Euclidian Min: ", min(kbest_clean_Euclidean.all_data))
 print("DTW Min: ", min(kbest_clean_DTW.all_data))
+
 
 print(z, "files were skipped")
 kbest_clean_Euclidean.calc_statisics()
