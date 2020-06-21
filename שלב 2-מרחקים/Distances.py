@@ -8,8 +8,6 @@ from collections import deque
 from scipy import ndimage
 from dtw import dtw
 import csv
-
-
 import matplotlib.dates as md
 import matplotlib.pyplot as plt
 import os
