@@ -69,7 +69,7 @@ clean_files = pd.DataFrame([], columns=["Sha1ID","MoreThan10","Malicious",
                                         "Day_Array","Hour_Array","Mean","Std","Size","WebFileUrlDomain"])
 
 #----------create folders
-maliciousDayPath=create_folder("Day Malicious")
+# maliciousDayPath=create_folder("Day Malicious")
 cleanDayPath=create_folder("Day Clean")
 
 for i in range(numfiles):
@@ -140,10 +140,11 @@ for i in range(numfiles):
    #  #-----------saves day graph------
     if (Malicious):
    #      path = os.path.join(maliciousDayPath, "file {0}.png".format(fileSha))
-        malicious_files=malicious_files.append(data_for_file, ignore_index=True)
+   #      malicious_files=malicious_files.append(data_for_file, ignore_index=True)
+         print("A")
    #      plt.savefig(path)
     else:
-   #      if (MoreThan100):
+        if (MoreThan10):
    #         path = os.path.join(cleanDayPath, "file {0}.png".format(fileSha))
            clean_files = clean_files.append(data_for_file, ignore_index=True)
    #         plt.savefig(path)
@@ -153,7 +154,7 @@ for i in range(numfiles):
    # # plt.show()
 
 #-------------saves malicious data csv  in maliciousDay and clean data csv in cleanDay ---------
-malicious_files.to_csv(os.path.join(maliciousDayPath, "Malicious Files Day Data.csv"))
+# malicious_files.to_csv(os.path.join(maliciousDayPath, "Malicious Files Day Data.csv"))
 clean_files.to_csv(os.path.join(cleanDayPath, "Clean Files Day Data.csv"))
 
 

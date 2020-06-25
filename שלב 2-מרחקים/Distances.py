@@ -63,7 +63,7 @@ class minDistances:
 
     def calc_statisics(self):
         if(self.statistics==[]):
-            self.statistics = pd.DataFrame([],  columns=["k best distances","k is malicius","k's mean","k's median", "k's std","k's malicios percentage","k's clean percentage","all's mean", "all's median","all's std_i"])
+            self.statistics = pd.DataFrame([],  columns=["K best distances","K is malicius","K's mean","K's median", "K's std","K's malicios percentage","K's clean percentage","All's mean", "All's median","All's std_i"])
             stats=[]
             for i in range(self.num_files):
                 if (j == 200):
@@ -86,8 +86,8 @@ class minDistances:
                 min_dist=k_dist[0]
 
                 data_for_file = pd.DataFrame([[k_dist,k_isMal,k_mean_i,k_median_i, k_std_i,k_mal_precent,k_clean_precent, all_dist_mean, all_dist_median_i, all_dist_std_i,max_dist,min_dist]],
-                                             columns=["k best distances","k is malicius","k's mean","k's median",
-                                                      "k's std","k's malicios percentage","k's clean percentage","all's mean", "all's median","all's std_i","max dist","min dist"])
+                                             columns=["K best distances","K is malicius","K's mean","K's median",
+                                                      "K's std","K's malicios percentage","K's clean percentage","All's mean", "All's median","All's std_i","Max dist","Min dist"])
                 self.statistics = self.statistics.append(data_for_file, ignore_index=True)
         return self.statistics
 def recenter(arr, arr_center):
@@ -98,9 +98,9 @@ def recenter(arr, arr_center):
     return np.array(items)
 
 
-k = 15
-cleanDay=pd.read_csv("clean files day data.csv")[["Sha1ID", "day_Array", "Malicious"]]
-malnDay = pd.read_csv("malicious files day data.csv")[["Sha1ID", "day_Array", "Malicious"]]
+k = 10
+cleanDay=pd.read_csv("clean files day data.csv")[["Sha1ID", "Day_Array", "Malicious"]]
+malnDay = pd.read_csv("malicious files day data.csv")[["Sha1ID", "Day_Array", "Malicious"]]
 all_data_Day=pd.concat([malnDay,cleanDay], axis=0,ignore_index=True)
 kbest_clean_Euclidean = minDistances(len(all_data_Day), k)
 kbest_clean_DTW = minDistances(len(all_data_Day), k)
@@ -112,16 +112,15 @@ z = 0
 for i in range(0, len(all_data_Day)):
     id1 = all_data_Day.iloc[i]["Sha1ID"]
     mal1 = all_data_Day.iloc[i]["Malicious"]
-    if i==5:
-        print("a")
     for j in range(i + 1, len(all_data_Day)):
+        print("i={0},j={1}\n".format(i,j))
         id2 = all_data_Day.iloc[j]["Sha1ID"]
         mal2 = all_data_Day.iloc[j]["Malicious"]
 
-        a = all_data_Day["day_Array"][i]
+        a = all_data_Day["Day_Array"][i]
         a = map(int, list(a[1:-1].split()))
         a = np.array([int(s) for s in a])
-        b = all_data_Day["day_Array"][j]
+        b = all_data_Day["Day_Array"][j]
         b = map(int, list(b[1:-1].split()))
         b = np.array([int(s) for s in b])
         # if sum(a) <= 2 or sum(b) <= 2:
@@ -204,17 +203,17 @@ for i in range(0, len(all_data_Day)):
 #     print("\n")
 
 # ----------------------------- statistics all files --------------------
-all_stat=pd.DataFrame([],columns=["name", "mean", "median",  "std", "max", "min"])
+all_stat=pd.DataFrame([],columns=["Name", "Mean", "Median",  "Std", "Max", "Min"])
 #---------- Euclidean: ------------
 Euclidean_statistics=kbest_clean_Euclidean.calc_statisics()
 Euclidian_average = sum_euclidian / counter
-Euclidian_std=kbest_clean_Euclidean.all_data
+Euclidian_std=statistics.pstdev(kbest_clean_Euclidean.all_data)
 Euclidian_median=statistics.median(kbest_clean_Euclidean.all_data)
-Euclidian_Min=min(Euclidean_statistics["min dist"])
-Euclidian_Max=max(Euclidean_statistics["max dist"])
+Euclidian_Min=min(Euclidean_statistics["Min dist"])
+Euclidian_Max=max(Euclidean_statistics["Max dist"])
 
 data_for_file = pd.DataFrame([["Euclidian",Euclidian_average, Euclidian_median, Euclidian_std, Euclidian_Max, Euclidian_Min]],
-                             columns=["name", "mean", "median",  "std", "max", "min"])
+                             columns=["Name", "Mean", "Median",  "Std", "Max", "Min"])
 all_stat = all_stat.append(data_for_file, ignore_index=True)
 
 #---------- DTW: ------------
@@ -222,10 +221,10 @@ DTW_statistics=kbest_clean_DTW.calc_statisics()
 DTW_average = sum_dtw / counter
 DTW_std=statistics.pstdev(kbest_clean_DTW.all_data)
 DTW_median=statistics.median(kbest_clean_DTW.all_data)
-DTW_Min=min(DTW_statistics["min dist"])
-DTW_Max=max(DTW_statistics["max dist"])
+DTW_Min=min(DTW_statistics["Min dist"])
+DTW_Max=max(DTW_statistics["Max dist"])
 data_for_file = pd.DataFrame([["DTW",DTW_average,DTW_median, DTW_std,DTW_Max, DTW_Min]],
-                             columns=["name", "mean", "median",  "std", "max", "min"])
+                             columns=["Name", "Mean", "Median",  "Std", "Max", "Min"])
 all_stat = all_stat.append(data_for_file, ignore_index=True)
 
 print(z, "files were skipped")
