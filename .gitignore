@@ -8,6 +8,7 @@ dataset/all data/Obf_webmails_fullWeek1_d5.tsv
 dataset/all data/Obf_webmails_fullWeek1_d6.tsv
 dataset/all data/Obf_webmails_fullWeek1_d7.tsv
 dataset/all data/Obf_webmails_fullWeek2_d7.tsv
-*.ini
-שלב 2-מרחקים/Distances - Copy.py
-שלב 2-מרחקים/Distances_updated.py
+
+שלב 1-מיון הדאטה/allData.csv
+שלב 1-מיון הדאטה/data.csv
+dataset/data.csv
