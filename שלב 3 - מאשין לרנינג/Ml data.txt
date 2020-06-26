@@ -1,0 +1,7 @@
+Cross Validation (5 fold):
+1.1 Logistic Regression(penalty='l2',solver='liblinear',max_iter=100): [0.88484252 0.87980296 0.88866995 0.89753695 0.89064039] => the avarage is 0.8882985531980916 
+1.2 Logistic Regression(penalty='l2', solver='liblinear', max_iter=200): [0.88484252 0.87980296 0.88866995 0.89753695 0.89064039] => the avarage is 0.8882985531980916 
+2.1 TreeClassifier(random_state=0, max_depth=10, min_samples_leaf=1): [0.96259843 0.95862069 0.96847291 0.97044335 0.96157635] => the avarage is 0.9643423451378922 
+2.2 TreeClassifier(random_state=0, max_depth=3, min_samples_leaf=1): [0.97244094 0.97339901 0.97339901 0.97241379 0.97931034] => the avarage is 0.9741926224739149 
+ => the best Classifier is TreeClassifier(random_state=0, max_depth=3, min_samples_leaf=1) 
+----------------------------------------------
