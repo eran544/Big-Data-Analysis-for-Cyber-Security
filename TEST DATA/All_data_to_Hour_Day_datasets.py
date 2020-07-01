@@ -1,11 +1,14 @@
 import pandas as pd
 import os
+from datetime import datetime
+
 import matplotlib.dates as md
 import matplotlib.pyplot as plt
 import pickle
 #Gets "data.csv" - all data given to us
 #filters it by day and by hour
 # creates 'daySet.csv' 'hourSet.csv'
+
 
 def create_folder(dirName):
     parent_dir = os.getcwd()
@@ -23,6 +26,10 @@ def create_folder(dirName):
 
 
 def create_dataset():
+    dateTimeObj = datetime.now()
+    timestampStr = dateTimeObj.strftime("%d-%b-%Y(%H:%M:%S)")
+    print('start  Timestamp : \n', timestampStr)
+
     allData = pd.read_csv("data.csv")[
         ["Sha1ID", "ThreatNameID", "ReportTime", "MachineGuidID", "Size",
          "WebFileUrlDomain"]]  # keep relavent coulmns #dataframe
@@ -113,6 +120,10 @@ pd.concat(daySet).to_csv('daySet.csv')
 pd.concat(hourSet).to_csv('hourSet.csv')
 
 print("saved")
+
+dateTimeObj = datetime.now()
+timestampStr = dateTimeObj.strftime("%d-%b-%Y(%H:%M:%S)")
+print('end  Timestamp : \n', timestampStr)
 
 
 

@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 import matplotlib.dates as md
+from datetime import datetime
+
 
 # Gets ""daySet.csv"- all files day dataset
 # Returns "day Malicious" and "day Clean" folders that contain graphs and "malicious files day data.csv" , "clean files day data.csv"
@@ -19,6 +21,11 @@ def create_folder(dirName):
     return path
 
 #----------create folders
+
+dateTimeObj = datetime.now()
+timestampStr = dateTimeObj.strftime("%d-%b-%Y(%H:%M:%S)")
+print('start  Timestamp : \n', timestampStr)
+
 maliciousDayPath=create_folder("day Malicious")
 cleanDayPath=create_folder("day Clean")
 
@@ -159,6 +166,10 @@ clean_files.to_csv(os.path.join(cleanDayPath, "Clean Files Day Data.csv"))
 
 
 print("END day")
+dateTimeObj = datetime.now()
+timestampStr = dateTimeObj.strftime("%d-%b-%Y(%H:%M:%S)")
+print('end  Timestamp : \n', timestampStr)
+
 # # save file
 # path=create_folder("hourSet Filse")
 # # hourSet[i].to_csv(path)

@@ -13,6 +13,8 @@ import matplotlib.pyplot as plt
 import os
 # Gets "clean files day data.csv"
 # return distances
+from datetime import datetime
+
 
 class minDistances:
 
@@ -97,8 +99,12 @@ def recenter(arr, arr_center):
     items.rotate(len(arr) - int(arr_center))
     return np.array(items)
 
+dateTimeObj = datetime.now()
+timestampStr = dateTimeObj.strftime("%d-%b-%Y(%H:%M:%S)")
+print('start  Timestamp : \n', timestampStr)
 
-k = 10
+
+k = 15
 cleanDay=pd.read_csv("clean files day data.csv")[["Sha1ID", "Day_Array", "Malicious"]]
 malnDay = pd.read_csv("malicious files day data.csv")[["Sha1ID", "Day_Array", "Malicious"]]
 all_data_Day=pd.concat([malnDay,cleanDay], axis=0,ignore_index=True)
@@ -239,3 +245,6 @@ DTW_statistics.to_csv(os.path.join(parent_dir, "DTW Distances.csv"))
 
 print("finished")
 
+dateTimeObj = datetime.now()
+timestampStr = dateTimeObj.strftime("%d-%b-%Y(%H:%M:%S)")
+print('end  Timestamp : \n', timestampStr)
