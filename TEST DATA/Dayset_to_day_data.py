@@ -147,7 +147,7 @@ for i in range(numfiles):
    #  #-----------saves day graph------
     if (Malicious):
    #      path = os.path.join(maliciousDayPath, "file {0}.png".format(fileSha))
-   #      malicious_files=malicious_files.append(data_for_file, ignore_index=True)
+         malicious_files=malicious_files.append(data_for_file, ignore_index=True)
          print("A")
    #      plt.savefig(path)
     else:
@@ -171,9 +171,9 @@ timestampStr = dateTimeObj.strftime("%d-%b-%Y(%H:%M:%S)")
 print('end  Timestamp : \n', timestampStr)
 
 # # save file
-# path=create_folder("hourSet Filse")
+path=create_folder("hourSet Filse")
 # # hourSet[i].to_csv(path)
-# daySet[i].to_csv('daySet file {0}.csv'.format(hourSet[i]["Sha1ID"][0]))
+daySet[i].to_csv('daySet file {0}.csv'.format(daySet[i]["Sha1ID"][0]))
 #
 # hourSet[i].to_csv('hourSet file {0}.csv'.format(hourSet[i]["Sha1ID"][0]))
 # # Make sure you don’t exclude them in the analysis! (as they are prevalent)
