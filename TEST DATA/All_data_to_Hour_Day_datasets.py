@@ -109,7 +109,6 @@ def sortByMachines(files):
  #-------------got from pre function ----------
 
 
-files = create_dataset()
 # with open('FILES.pkl', 'wb') as f:
 #     pickle.dump(files, f)
 
