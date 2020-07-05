@@ -1,14 +1,11 @@
 import pandas as pd
 import os
-from datetime import datetime
-
 import matplotlib.dates as md
 import matplotlib.pyplot as plt
 import pickle
 #Gets "data.csv" - all data given to us
 #filters it by day and by hour
 # creates 'daySet.csv' 'hourSet.csv'
-
 
 def create_folder(dirName):
     parent_dir = os.getcwd()
@@ -26,13 +23,9 @@ def create_folder(dirName):
 
 
 def create_dataset():
-    dateTimeObj = datetime.now()
-    timestampStr = dateTimeObj.strftime("%d-%b-%Y(%H:%M:%S)")
-    print('start  Timestamp : \n', timestampStr)
-
     allData = pd.read_csv("data.csv")[
-        ["Sha1ID", "ThreatNameID", "ReportTime", "MachineGuidID", "Size",
-         "WebFileUrlDomain"]]  # keep relavent coulmns #dataframe
+        ["Sha1ID", "ThreatNameID", "ReportTime", "MachineGuidID", "Size"
+        ]]  # keep relavent coulmns #dataframe
     files = [[]]
     # --------------------create a dataSet to each file------------------------------
     allData.sort_values(by=['Sha1ID', 'ReportTime'], ascending=[True, True], inplace=True)
@@ -49,15 +42,15 @@ def create_dataset():
         i = i + 1
         if currF == sha:
             files[j].append(
-                [allData.iloc[i][0], allData.iloc[i][1], allData.iloc[i][2], allData.iloc[i][3], allData.iloc[i][4], allData.iloc[i][5]])
+                [allData.iloc[i][0], allData.iloc[i][1], allData.iloc[i][2], allData.iloc[i][3], allData.iloc[i][4]])
         else:
-            files[j] = pd.DataFrame(files[j], columns=["Sha1ID", "ThreatNameID", "ReportTime", "MachineGuidID", "Size","WebFileUrlDomain"])
+            files[j] = pd.DataFrame(files[j], columns=["Sha1ID", "ThreatNameID", "ReportTime", "MachineGuidID", "Size"])
             currF = sha
             j = j + 1
             files.append([])
             files[j].append(
-                [allData.iloc[i][0], allData.iloc[i][1], allData.iloc[i][2], allData.iloc[i][3], allData.iloc[i][4],allData.iloc[i][5]])
-    files[j] = pd.DataFrame(files[j], columns=["Sha1ID", "ThreatNameID", "ReportTime", "MachineGuidID", "Size","WebFileUrlDomain"])
+                [allData.iloc[i][0], allData.iloc[i][1], allData.iloc[i][2], allData.iloc[i][3], allData.iloc[i][4]])
+    files[j] = pd.DataFrame(files[j], columns=["Sha1ID", "ThreatNameID", "ReportTime", "MachineGuidID", "Size"])
     return files
 
     #del allData
@@ -85,7 +78,7 @@ def sortByMachines(files):
         # -------------------create time set to each file dataset - machine vs hours-----------------
         files[i]['ReportTime'] = pd.to_datetime(files[i]['ReportTime'])
         # ------------hourSet - hour vs machine----------------
-        hourSet.append(files[i].groupby([pd.Grouper(key='ReportTime', freq='H'), "Sha1ID", "Malicious", "Size","WebFileUrlDomain"]).size().reset_index(
+        hourSet.append(files[i].groupby([pd.Grouper(key='ReportTime', freq='H'), "Sha1ID", "Malicious", "Size"]).size().reset_index(
                 name='HourlyMachineCount'))
         # Clean-Prevalent file (more than X machines)
         if (hourSet[i]['HourlyMachineCount'].sum() > 10):
@@ -95,7 +88,7 @@ def sortByMachines(files):
 
 
         # ------------ daySet-day vs machine-----------------
-        daySet.append(files[i].groupby([pd.Grouper(key='ReportTime', freq='D'), "Sha1ID", "Malicious", "Size","WebFileUrlDomain"]).size().reset_index(
+        daySet.append(files[i].groupby([pd.Grouper(key='ReportTime', freq='D'), "Sha1ID", "Malicious", "Size"]).size().reset_index(
             name='DailyMachineCount'))
 
         # Clean-Prevalent file (more than X machines)
@@ -119,10 +112,6 @@ pd.concat(daySet).to_csv('daySet.csv')
 pd.concat(hourSet).to_csv('hourSet.csv')
 
 print("saved")
-
-dateTimeObj = datetime.now()
-timestampStr = dateTimeObj.strftime("%d-%b-%Y(%H:%M:%S)")
-print('end  Timestamp : \n', timestampStr)
 
 
 

@@ -1,9 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
-import matplotlib.dates as md
 from datetime import datetime
-
+import matplotlib.dates as md
 
 # Gets ""daySet.csv"- all files day dataset
 # Returns "day Malicious" and "day Clean" folders that contain graphs and "malicious files day data.csv" , "clean files day data.csv"
@@ -21,16 +20,15 @@ def create_folder(dirName):
     return path
 
 #----------create folders
-
 dateTimeObj = datetime.now()
-timestampStr = dateTimeObj.strftime("%d-%b-%Y(%H:%M:%S)")
-print('start  Timestamp : \n', timestampStr)
+starttimestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S)")
+print('START Timestamp : ', starttimestampStr)
 
 maliciousDayPath=create_folder("day Malicious")
 cleanDayPath=create_folder("day Clean")
 
 daySet1 = pd.read_csv("daySet.csv",header=0)[["ReportTime", "Sha1ID", "Malicious",
-                                              "DailyMachineCount", "MoreThan10", "Size","WebFileUrlDomain"]]
+                                              "DailyMachineCount", "MoreThan10", "Size"]]
 i = -1
 j = 0
 currF = daySet1.iloc[0][1]
@@ -44,20 +42,20 @@ for sha in daySet1["Sha1ID"]:
     i = i + 1
     if currF == sha:
         daySet[j].append(
-            [daySet1.iloc[i][0], daySet1.iloc[i][1], daySet1.iloc[i][2], daySet1.iloc[i][3], daySet1.iloc[i][4], daySet1.iloc[i][5],daySet1.iloc[i][6]]
+            [daySet1.iloc[i][0], daySet1.iloc[i][1], daySet1.iloc[i][2], daySet1.iloc[i][3], daySet1.iloc[i][4], daySet1.iloc[i][5]]
         )
     else:
         daySet[j] = pd.DataFrame(daySet[j], columns=["ReportTime", "Sha1ID", "Malicious",
-                                                     "DailyMachineCount", "MoreThan10", "Size","WebFileUrlDomain"])
+                                                     "DailyMachineCount", "MoreThan10", "Size"])
         daySet[j]['ReportTime'] = pd.to_datetime(daySet[j]['ReportTime'],dayfirst=True)
         currF = sha
         j = j + 1
         daySet.append([])
         daySet[j].append(
-            [daySet1.iloc[i][0], daySet1.iloc[i][1], daySet1.iloc[i][2], daySet1.iloc[i][3], daySet1.iloc[i][4], daySet1.iloc[i][5],daySet1.iloc[i][6]])
+            [daySet1.iloc[i][0], daySet1.iloc[i][1], daySet1.iloc[i][2], daySet1.iloc[i][3], daySet1.iloc[i][4], daySet1.iloc[i][5]])
 
 daySet[j] = pd.DataFrame(daySet[j], columns=["ReportTime", "Sha1ID", "Malicious",
-                                             "DailyMachineCount", "MoreThan10", "Size","WebFileUrlDomain"])
+                                             "DailyMachineCount", "MoreThan10", "Size"])
 daySet[j]['ReportTime'] = pd.to_datetime(daySet[j]['ReportTime'], dayfirst=True)
 
 numfiles = len(daySet)
@@ -65,18 +63,18 @@ print(numfiles)
 
 
 #------get time set of all hours between 1/1 to 11/1 vs number of machines.------------
-DaysDeltas = pd.Series(pd.date_range(start='-01-01-2017', end='2017-01-12', freq='D'))
+DaysDeltas = pd.Series(pd.date_range(start='2017-01-12', end='2017-01-14', freq='D'))
 DayDeltasList = [[day,0,] for day in DaysDeltas]
 dayRangeVSmachine = []
 
 #------data frames that wii contain all the data about the relevent files. in the end will export to csv.------------
 malicious_files = pd.DataFrame([], columns=["Sha1ID","MoreThan10","Malicious",
-                                            "Day_Array","Hour_Array","Mean","Std","Size","WebFileUrlDomain"])
+                                            "Day_Array","Hour_Array","Mean","Std","Size"])
 clean_files = pd.DataFrame([], columns=["Sha1ID","MoreThan10","Malicious",
-                                        "Day_Array","Hour_Array","Mean","Std","Size","WebFileUrlDomain"])
+                                        "Day_Array","Hour_Array","Mean","Std","Size"])
 
 #----------create folders
-# maliciousDayPath=create_folder("Day Malicious")
+maliciousDayPath=create_folder("Day Malicious")
 cleanDayPath=create_folder("Day Clean")
 
 for i in range(numfiles):
@@ -88,7 +86,6 @@ for i in range(numfiles):
     MoreThan10 = daySet[i]["MoreThan10"][0]
     Malicious = daySet[i]["Malicious"][0]
     size = daySet[i]["Size"][0]
-    domain=daySet[i]["WebFileUrlDomain"][0]
     #----ranged by day----
     dayRangeVSmachine.append(pd.DataFrame(DayDeltasList, columns=['ReportTime', 'DailyMachineCount']))
     dayRangeVSmachine[i] = daySet[i].append(dayRangeVSmachine[i], ignore_index=True)
@@ -98,7 +95,6 @@ for i in range(numfiles):
     dayRangeVSmachine[i]["MoreThan10"] = MoreThan10
     dayRangeVSmachine[i]["Malicious"] = Malicious
     dayRangeVSmachine[i]["Size"] = size
-    dayRangeVSmachine[i]["WebFileUrlDomain"] = domain
     day_Array=dayRangeVSmachine[i]["DailyMachineCount"].to_numpy()
 
     # --------- statistics---------
@@ -112,8 +108,8 @@ for i in range(numfiles):
     #print("file {}: Standard deviation is: {:.3f}".format(fileSha, fileStd))
 
     # --------- data line---------
-    data_for_file = pd.DataFrame([[fileSha,MoreThan10,Malicious,day_Array,mean,std,size,domain]],
-                                 columns=["Sha1ID","MoreThan10","Malicious","Day_Array","Mean","Std","Size","WebFileUrlDomain"])
+    data_for_file = pd.DataFrame([[fileSha,MoreThan10,Malicious,day_Array,mean,std,size]],
+                                 columns=["Sha1ID","MoreThan10","Malicious","Day_Array","Mean","Std","Size"])
 
 
 #-------------------plot Graph machine vs time-----------------
@@ -146,7 +142,7 @@ for i in range(numfiles):
    #
    #  #-----------saves day graph------
     if (Malicious):
-   #      path = os.path.join(maliciousDayPath, "file {0}.png".format(fileSha))
+         path = os.path.join(maliciousDayPath, "file {0}.png".format(fileSha))
          malicious_files=malicious_files.append(data_for_file, ignore_index=True)
          print("A")
    #      plt.savefig(path)
@@ -161,19 +157,25 @@ for i in range(numfiles):
    # # plt.show()
 
 #-------------saves malicious data csv  in maliciousDay and clean data csv in cleanDay ---------
-# malicious_files.to_csv(os.path.join(maliciousDayPath, "Malicious Files Day Data.csv"))
+malicious_files.to_csv(os.path.join(maliciousDayPath, "Malicious Files Day Data.csv"))
 clean_files.to_csv(os.path.join(cleanDayPath, "Clean Files Day Data.csv"))
 
 
 print("END day")
+fileML = open("dayset to daydata timestamp.txt", "a+")  # append mode
+fileML.write('START Timestamp : ', starttimestampStr )
+
 dateTimeObj = datetime.now()
-timestampStr = dateTimeObj.strftime("%d-%b-%Y(%H:%M:%S)")
-print('end  Timestamp : \n', timestampStr)
+timestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S)")
+print(',END Timestamp : ', timestampStr)
+fileML.write('END Timestamp : ', timestampStr)
+fileML.write('\n ----------- \n')
+fileML.close()
 
 # # save file
-path=create_folder("hourSet Filse")
+# path=create_folder("hourSet Filse")
 # # hourSet[i].to_csv(path)
-daySet[i].to_csv('daySet file {0}.csv'.format(daySet[i]["Sha1ID"][0]))
+# daySet[i].to_csv('daySet file {0}.csv'.format(hourSet[i]["Sha1ID"][0]))
 #
 # hourSet[i].to_csv('hourSet file {0}.csv'.format(hourSet[i]["Sha1ID"][0]))
 # # Make sure you don’t exclude them in the analysis! (as they are prevalent)

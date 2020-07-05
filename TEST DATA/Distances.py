@@ -11,10 +11,9 @@ import csv
 import matplotlib.dates as md
 import matplotlib.pyplot as plt
 import os
+from datetime import datetime
 # Gets "clean files day data.csv"
 # return distances
-from datetime import datetime
-
 
 class minDistances:
 
@@ -100,11 +99,10 @@ def recenter(arr, arr_center):
     return np.array(items)
 
 dateTimeObj = datetime.now()
-timestampStr = dateTimeObj.strftime("%d-%b-%Y(%H:%M:%S)")
-print('start  Timestamp : \n', timestampStr)
+starttimestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S)")
+print('START Timestamp : ', starttimestampStr)
 
-
-k = 15
+k = 10
 cleanDay=pd.read_csv("clean files day data.csv")[["Sha1ID", "Day_Array", "Malicious"]]
 malnDay = pd.read_csv("malicious files day data.csv")[["Sha1ID", "Day_Array", "Malicious"]]
 all_data_Day=pd.concat([malnDay,cleanDay], axis=0,ignore_index=True)
@@ -233,18 +231,18 @@ data_for_file = pd.DataFrame([["DTW",DTW_average,DTW_median, DTW_std,DTW_Max, DT
                              columns=["Name", "Mean", "Median",  "Std", "Max", "Min"])
 all_stat = all_stat.append(data_for_file, ignore_index=True)
 
-print(z, "files were skipped")
 
-
+fileML = open("Distances timestamp", "a+")  # append mode
+fileML.write('START Timestamp : ', starttimestampStr )
 parent_dir = os.getcwd()
 all_stat.to_csv(os.path.join(parent_dir, "all data's statistics.csv"))
 Euclidean_statistics.to_csv(os.path.join(parent_dir, "Euclidean Distances.csv"))
 DTW_statistics.to_csv(os.path.join(parent_dir, "DTW Distances.csv"))
-
-
-
+dateTimeObj = datetime.now()
+timestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S)")
+print(',END Timestamp : ', timestampStr)
+fileML.write('END Timestamp : ', timestampStr)
+fileML.write('\n ----------- \n')
+fileML.close()
 print("finished")
 
-dateTimeObj = datetime.now()
-timestampStr = dateTimeObj.strftime("%d-%b-%Y(%H:%M:%S)")
-print('end  Timestamp : \n', timestampStr)
