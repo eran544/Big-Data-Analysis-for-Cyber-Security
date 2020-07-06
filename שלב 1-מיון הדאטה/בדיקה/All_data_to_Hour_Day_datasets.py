@@ -3,9 +3,14 @@ import os
 import matplotlib.dates as md
 import matplotlib.pyplot as plt
 import pickle
+from datetime import datetime
 #Gets "data.csv" - all data given to us
 #filters it by day and by hour
 # creates 'daySet.csv' 'hourSet.csv'
+
+dateTimeObj = datetime.now()
+starttimestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S)")
+print('START Timestamp : ', starttimestampStr)
 
 def create_folder(dirName):
     parent_dir = os.getcwd()
@@ -73,21 +78,27 @@ def sortByMachines(files):
         else:
             files[i]['Malicious'] = False
         files[i].sort_values(by=['ReportTime', 'MachineGuidID'], ascending=[True, True], inplace=True)
-        files[i].drop_duplicates('MachineGuidID', keep="first", inplace=True)
 
         # -------------------create time set to each file dataset - machine vs hours-----------------
-        files[i]['ReportTime'] = pd.to_datetime(files[i]['ReportTime'])
         # ------------hourSet - hour vs machine----------------
-        hourSet.append(files[i].groupby([pd.Grouper(key='ReportTime', freq='H'), "Sha1ID", "Malicious", "Size"]).size().reset_index(
-                name='HourlyMachineCount'))
-        # Clean-Prevalent file (more than X machines)
-        if (hourSet[i]['HourlyMachineCount'].sum() > 10):
-            hourSet[i]['MoreThan10'] = True
-        else:
-            hourSet[i]['MoreThan10'] = False
+        # files[i]['ReportTime'] = pd.to_datetime(files[i]['ReportTime']).apply(lambda x: x.replace(minute=0, second=0))
+        # files[i].drop_duplicates(('MachineGuidID' ,'ReportTime'), keep="first", inplace=True)
+        #
+        #
+        # hourSet.append(files[i].groupby([pd.Grouper(key='ReportTime', freq='H'), "Sha1ID", "Malicious", "Size"]).size().reset_index(
+        #         name='HourlyMachineCount'))
+        # # Clean-Prevalent file (more than X machines)
+        # if (hourSet[i]['HourlyMachineCount'].sum() > 10):
+        #     hourSet[i]['MoreThan10'] = True
+        # else:
+        #     hourSet[i]['MoreThan10'] = False
 
 
         # ------------ daySet-day vs machine-----------------
+        files[i]['ReportTime'] = pd.to_datetime(files[i]['ReportTime']).apply(
+lambda x: x.replace(hour=0, minute=0, second=0))
+        files[i].drop_duplicates(('MachineGuidID', 'ReportTime'), keep="first", inplace=True)
+
         daySet.append(files[i].groupby([pd.Grouper(key='ReportTime', freq='D'), "Sha1ID", "Malicious", "Size"]).size().reset_index(
             name='DailyMachineCount'))
 
@@ -110,7 +121,17 @@ files = create_dataset()
 print("dataset created")
 
 pd.concat(daySet).to_csv('daySet.csv')
-pd.concat(hourSet).to_csv('hourSet.csv')
+# pd.concat(hourSet).to_csv('hourSet.csv')
+
+fileML = open("All_data_to_Hour_Day_datasets timestamp", "a+")  # append mode
+fileML.write('START Timestamp : '+ starttimestampStr )
+parent_dir = os.getcwd()
+dateTimeObj = datetime.now()
+timestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S)")
+print(',END Timestamp : ', timestampStr)
+fileML.write('END Timestamp : '+ timestampStr)
+fileML.write('\n ----------- \n')
+fileML.close()
 
 print("saved")
 

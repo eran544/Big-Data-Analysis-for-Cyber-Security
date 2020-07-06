@@ -105,6 +105,9 @@ def Decision_Tree_Classifier(clf):
              fileML.write("{0}: ".format(X_train.columns[i]))
              print(clf.feature_importances_[i])
              fileML.write("{0} \n".format(clf.feature_importances_[i]))
+             print("2^coeff: " + str(2.0 ** (clf.feature_importances_[i])))
+             fileML.write("2^coeff: {0} \n".format(str(2.0 ** (clf.feature_importances_[i]))))
+
          fileML.write("\n")
 
          dot_data = six.StringIO()
@@ -131,8 +134,9 @@ def Decision_Tree_Classifier(clf):
          print('finished')
 
          #----------function---------
-         tree_to_code(clf, ["Malicious", "Day count Mean", "Day count STD", 'Max Day count', "Size", "DTW k-mean", "DTW k-median",
-                     "DTW k-STD", "DTW k-Malicious(%)"])
+         tree_to_code(clf,  ["Malicious", "Day count Mean", "Day count STD", 'max Day count', "Size", "DTW k-mean", "DTW k-median", "DTW k-STD",
+     "DTW k-Malicious(%)", "Prevalence", "Peaks", "Sharp peaks",
+     "min Day count", "Euclidean k-mean", "Euclidean k-median", "Euclidean k-STD","Euclidean k-Malicious(%)"])
 
          fileML.write("----------------------------------------------\n")
          fileML.close()
@@ -151,19 +155,19 @@ def crossVal(X_train,Y_train):
     fileML.write("Cross Validation (5 fold):\n")
 
     #Logistic Regression cross_val
-    name1="Logistic Regression(penalty='l2',solver='liblinear',max_iter=100)"
+    name1="Logistic Regression(penalty='l2',solver='liblinear',max_iter=300)"
     fileML.write("1.1 {}: ".format(name1))
-    logreg1 = LogisticRegression(penalty='l2',solver='liblinear',max_iter=100)
+    logreg1 = LogisticRegression(penalty='l2',solver='liblinear',max_iter=300)
     scores_logreg1 = cross_val_score(logreg1, X_train, Y_train, cv=5)
     fileML.write(str(scores_logreg1))
     scores_logreg1 = scores_logreg1.mean()
     fileML.write(" => the avarage is {} \n".format(scores_logreg1))
 
-    name2 = "Logistic Regression(penalty='l2', solver='liblinear', max_iter=200)"
+    name2 = "Logistic Regression(penalty='l2', solver='liblinear', max_iter=500)"
     fileML.write("1.2 {}: ".format(name2))
     logreg2 = LogisticRegression(penalty='l2',
                                 solver='liblinear',
-                                max_iter=200)
+                                max_iter=500)
     scores_logreg2 = cross_val_score(logreg2, X_train, Y_train, cv=5)
     fileML.write(str(scores_logreg2))
     scores_logreg2 = scores_logreg2.mean()
@@ -203,15 +207,28 @@ def crossVal(X_train,Y_train):
 
 
 
-df = pd.read_csv('features.csv')
-forML = df[
-    ["Malicious", "Day count Mean", "Day count STD", 'Max Day count', "Size", "DTW k-mean", "DTW k-median", "DTW k-STD",
-     "DTW k-Malicious(%)"]]
-X_train=forML.drop('Malicious', axis=1)
-Y_train=forML['Malicious']
+dfTrain = pd.read_csv('features Train.csv')
+forMLTrain = dfTrain[
+    ["Malicious", "Day count Mean", "Day count STD", 'max Day count', "Size", "DTW k-mean", "DTW k-median", "DTW k-STD",
+     "DTW k-Malicious(%)", "Prevalence", "Peaks", "Sharp peaks",
+     "min Day count", "Euclidean k-mean", "Euclidean k-median", "Euclidean k-STD", "Euclidean k-Malicious(%)"]
+    ]
+X_train=forMLTrain.drop('Malicious', axis=1)
+Y_train=forMLTrain['Malicious']
 parent_dir = os.getcwd()
+
 chosen_func=crossVal(X_train,Y_train)
 
-# TODO:#call on X_train Y_train
-# chosen_func( X_train, X_test, Y_train, Y_test)
+dfTest = pd.read_csv('features Test.csv')
+forMLTest = dfTest[
+    ["Malicious", "Day count Mean", "Day count STD", 'max Day count', "Size", "DTW k-mean", "DTW k-median", "DTW k-STD",
+     "DTW k-Malicious(%)", "Prevalence", "Peaks", "Sharp peaks",
+     "min Day count", "Euclidean k-mean", "Euclidean k-median", "Euclidean k-STD","Euclidean k-Malicious(%)"]
+]
+X_test=forMLTest.drop('Malicious', axis=1)
+Y_test=forMLTest['Malicious']
+parent_dir = os.getcwd()
+chosen_func( X_train, X_test, Y_train, Y_test)
+
+
 

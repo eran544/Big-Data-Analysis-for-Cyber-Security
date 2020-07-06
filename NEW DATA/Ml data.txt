@@ -1,0 +1,315 @@
+Cross Validation (5 fold):
+1.1 Logistic Regression(penalty='l2',solver='liblinear',max_iter=300): [0.86064769 0.82630029 0.85068762 0.88605108 0.86444008] => the avarage is 0.8576253540298187 
+1.2 Logistic Regression(penalty='l2', solver='liblinear', max_iter=500): [0.86064769 0.84102061 0.85068762 0.88605108 0.86444008] => the avarage is 0.8605694168364918 
+2.1 TreeClassifier(random_state=0, max_depth=10, min_samples_leaf=1): [0.96172718 0.96467125 0.96267191 0.96463654 0.97053045] => the avarage is 0.9648474659273413 
+2.2 TreeClassifier(random_state=0, max_depth=3, min_samples_leaf=1): [0.96270854 0.96172718 0.96561886 0.97347741 0.97445972] => the avarage is 0.9675983426873682 
+ => the best Classifier is TreeClassifier(random_state=0, max_depth=3, min_samples_leaf=1) 
+----------------------------------------------
+Decision Tree Classifier feature_importances: 
+Day count Mean: 0.8870155520104889 
+2^coeff: 1.84934649176485 
+Day count STD: 0.006660087655499769 
+2^coeff: 1.0046270930679901 
+max Day count: 0.0036831751303273825 
+2^coeff: 1.0025562440918496 
+Size: 0.04625060735921602 
+2^coeff: 1.032577886722431 
+DTW k-mean: 0.0002925044808021986 
+2^coeff: 1.000202769211067 
+DTW k-median: 0.002523857118089528 
+2^coeff: 1.0017509355462049 
+DTW k-STD: 0.005902335826876368 
+2^coeff: 1.0040995677690456 
+DTW k-Malicious(%): 0.0067324079523093435 
+2^coeff: 1.0046774548898376 
+Prevalence: 0.0029145931594968485 
+2^coeff: 1.0020222840948392 
+Peaks: 0.000687916210332908 
+2^coeff: 1.0004769408818053 
+Sharp peaks: 0.007036422557986175 
+2^coeff: 1.0048891897303511 
+min Day count: 0.0020780461868228953 
+2^coeff: 1.001441429718068 
+Euclidean k-mean: 0.007604279242527339 
+2^coeff: 1.005284800268345 
+Euclidean k-median: 0.004487177840156687 
+2^coeff: 1.0031151165914347 
+Euclidean k-STD: 0.014150791869502086 
+2^coeff: 1.009856843286633 
+Euclidean k-Malicious(%): 0.0019802453995656634 
+2^coeff: 1.0013735439641387 
+
+def tree(Malicious, Day count Mean, Day count STD, max Day count, Size, DTW k-mean, DTW k-median, DTW k-STD, DTW k-Malicious(%), Prevalence, Peaks, Sharp peaks, min Day count, Euclidean k-mean, Euclidean k-median, Euclidean k-STD, Euclidean k-Malicious(%)):
+  if Malicious <= 0.9545454680919647:
+    return [[   0. 3795.]]
+  else:  # if Malicious > 0.9545454680919647
+    if DTW k-STD <= 29.999999046325684:
+      if max Day count <= 2569523.0:
+        if max Day count <= 344168.5:
+          if Day count STD <= 1370.5:
+            if Euclidean k-median <= 0.8747767210006714:
+              if Euclidean k-median <= 0.8592129349708557:
+                if Day count Mean <= 1.4077557921409607:
+                  return [[36.  0.]]
+                else:  # if Day count Mean > 1.4077557921409607
+                  if Euclidean k-median <= 0.36650289595127106:
+                    if Euclidean k-median <= 0.32253339886665344:
+                      return [[29.  4.]]
+                    else:  # if Euclidean k-median > 0.32253339886665344
+                      return [[9. 6.]]
+                  else:  # if Euclidean k-median > 0.36650289595127106
+                    if Day count Mean <= 3.040630578994751:
+                      return [[99. 15.]]
+                    else:  # if Day count Mean > 3.040630578994751
+                      return [[47.  0.]]
+              else:  # if Euclidean k-median > 0.8592129349708557
+                if max Day count <= 38551.0:
+                  return [[1. 0.]]
+                else:  # if max Day count > 38551.0
+                  return [[0. 2.]]
+            else:  # if Euclidean k-median > 0.8747767210006714
+              if max Day count <= 105025.0:
+                if min Day count <= 7.1247828006744385:
+                  if min Day count <= 7.0382513999938965:
+                    return [[8. 0.]]
+                  else:  # if min Day count > 7.0382513999938965
+                    return [[0. 1.]]
+                else:  # if min Day count > 7.1247828006744385
+                  return [[75.  0.]]
+              else:  # if max Day count > 105025.0
+                if max Day count <= 112309.5:
+                  return [[0. 1.]]
+                else:  # if max Day count > 112309.5
+                  if Sharp peaks <= 1.5:
+                    return [[28.  0.]]
+                  else:  # if Sharp peaks > 1.5
+                    if DTW k-Malicious(%) <= 100.0:
+                      return [[0. 1.]]
+                    else:  # if DTW k-Malicious(%) > 100.0
+                      return [[2. 0.]]
+          else:  # if Day count STD > 1370.5
+            return [[0. 1.]]
+        else:  # if max Day count > 344168.5
+          if DTW k-median <= 3.609862804412842:
+            if max Day count <= 2456842.5:
+              if max Day count <= 360448.5:
+                return [[0. 1.]]
+              else:  # if max Day count > 360448.5
+                if Euclidean k-STD <= 3.3333332538604736:
+                  if Euclidean k-mean <= 2.914213538169861:
+                    if DTW k-mean <= 3.0:
+                      return [[1. 0.]]
+                    else:  # if DTW k-mean > 3.0
+                      return [[1. 4.]]
+                  else:  # if Euclidean k-mean > 2.914213538169861
+                    return [[5. 0.]]
+                else:  # if Euclidean k-STD > 3.3333332538604736
+                  if DTW k-median <= 2.1984543800354004:
+                    if Euclidean k-median <= 0.8577634692192078:
+                      return [[96.  4.]]
+                    else:  # if Euclidean k-median > 0.8577634692192078
+                      return [[0. 1.]]
+                  else:  # if DTW k-median > 2.1984543800354004
+                    if Day count Mean <= 1.8404066562652588:
+                      return [[0. 1.]]
+                    else:  # if Day count Mean > 1.8404066562652588
+                      return [[33.  5.]]
+            else:  # if max Day count > 2456842.5
+              if min Day count <= 3.124331831932068:
+                return [[1. 0.]]
+              else:  # if min Day count > 3.124331831932068
+                return [[0. 3.]]
+          else:  # if DTW k-median > 3.609862804412842
+            if min Day count <= 7.208558797836304:
+              if max Day count <= 739020.5:
+                if DTW k-mean <= 8.5:
+                  return [[1. 0.]]
+                else:  # if DTW k-mean > 8.5
+                  return [[ 0. 13.]]
+              else:  # if max Day count > 739020.5
+                if Day count Mean <= 3.291769504547119:
+                  if DTW k-Malicious(%) <= 30.5:
+                    return [[1. 0.]]
+                  else:  # if DTW k-Malicious(%) > 30.5
+                    return [[0. 2.]]
+                else:  # if Day count Mean > 3.291769504547119
+                  return [[7. 0.]]
+            else:  # if min Day count > 7.208558797836304
+              if DTW k-STD <= 16.666666507720947:
+                if Euclidean k-median <= 0.600088357925415:
+                  return [[0. 1.]]
+                else:  # if Euclidean k-median > 0.600088357925415
+                  if max Day count <= 345397.5:
+                    return [[0. 1.]]
+                  else:  # if max Day count > 345397.5
+                    if Prevalence <= 1.5:
+                      return [[4. 1.]]
+                    else:  # if Prevalence > 1.5
+                      return [[23.  0.]]
+              else:  # if DTW k-STD > 16.666666507720947
+                if max Day count <= 1298538.5:
+                  if max Day count <= 935225.0:
+                    if Day count STD <= 17.5:
+                      return [[6. 1.]]
+                    else:  # if Day count STD > 17.5
+                      return [[1. 2.]]
+                  else:  # if max Day count > 935225.0
+                    return [[0. 4.]]
+                else:  # if max Day count > 1298538.5
+                  return [[5. 0.]]
+      else:  # if max Day count > 2569523.0
+        if Sharp peaks <= 1.5:
+          if Prevalence <= 1.5:
+            if Euclidean k-STD <= 36.66666603088379:
+              if Day count Mean <= 1.9132826924324036:
+                if Day count Mean <= 1.8338544368743896:
+                  if DTW k-STD <= 9.999999761581421:
+                    if DTW k-Malicious(%) <= 15.5:
+                      return [[2. 1.]]
+                    else:  # if DTW k-Malicious(%) > 15.5
+                      return [[8. 0.]]
+                  else:  # if DTW k-STD > 9.999999761581421
+                    return [[31.  0.]]
+                else:  # if Day count Mean > 1.8338544368743896
+                  return [[0. 1.]]
+              else:  # if Day count Mean > 1.9132826924324036
+                if max Day count <= 3778754.5:
+                  if max Day count <= 3749232.0:
+                    return [[6. 0.]]
+                  else:  # if max Day count > 3749232.0
+                    return [[0. 1.]]
+                else:  # if max Day count > 3778754.5
+                  return [[220.   0.]]
+            else:  # if Euclidean k-STD > 36.66666603088379
+              if max Day count <= 4200142.0:
+                return [[6. 0.]]
+              else:  # if max Day count > 4200142.0
+                if Euclidean k-STD <= 50.0:
+                  if DTW k-STD <= 9.999999761581421:
+                    return [[1. 0.]]
+                  else:  # if DTW k-STD > 9.999999761581421
+                    return [[0. 2.]]
+                else:  # if Euclidean k-STD > 50.0
+                  return [[2. 0.]]
+          else:  # if Prevalence > 1.5
+            if max Day count <= 3882485.0:
+              return [[25.  0.]]
+            else:  # if max Day count > 3882485.0
+              if max Day count <= 3895949.0:
+                return [[0. 1.]]
+              else:  # if max Day count > 3895949.0
+                if Size <= 6.266666650772095:
+                  if Euclidean k-mean <= 3.9364917278289795:
+                    return [[5. 0.]]
+                  else:  # if Euclidean k-mean > 3.9364917278289795
+                    return [[0. 2.]]
+                else:  # if Size > 6.266666650772095
+                  if Euclidean k-median <= 0.7749141156673431:
+                    return [[33.  0.]]
+                  else:  # if Euclidean k-median > 0.7749141156673431
+                    if Euclidean k-median <= 0.8108409941196442:
+                      return [[0. 3.]]
+                    else:  # if Euclidean k-median > 0.8108409941196442
+                      return [[38.  4.]]
+        else:  # if Sharp peaks > 1.5
+          if min Day count <= 93.84463119506836:
+            if max Day count <= 3548252.5:
+              return [[1. 0.]]
+            else:  # if max Day count > 3548252.5
+              if max Day count <= 12701348.0:
+                return [[0. 4.]]
+              else:  # if max Day count > 12701348.0
+                return [[1. 0.]]
+          else:  # if min Day count > 93.84463119506836
+            return [[3. 0.]]
+    else:  # if DTW k-STD > 29.999999046325684
+      if Peaks <= 0.5:
+        if min Day count <= 2.308330535888672:
+          if max Day count <= 247677.0:
+            return [[0. 4.]]
+          else:  # if max Day count > 247677.0
+            if max Day count <= 5239452.0:
+              if Euclidean k-median <= 0.3369334042072296:
+                if DTW k-mean <= 4.5:
+                  return [[2. 0.]]
+                else:  # if DTW k-mean > 4.5
+                  return [[0. 1.]]
+              else:  # if Euclidean k-median > 0.3369334042072296
+                return [[11.  0.]]
+            else:  # if max Day count > 5239452.0
+              return [[0. 2.]]
+        else:  # if min Day count > 2.308330535888672
+          if max Day count <= 418132.0:
+            if Euclidean k-mean <= 4.0615527629852295:
+              if Day count Mean <= 0.884145051240921:
+                if Day count STD <= 2.5:
+                  return [[5. 0.]]
+                else:  # if Day count STD > 2.5
+                  return [[0. 2.]]
+              else:  # if Day count Mean > 0.884145051240921
+                if Day count Mean <= 1.4077557921409607:
+                  return [[56.  0.]]
+                else:  # if Day count Mean > 1.4077557921409607
+                  if Day count Mean <= 1.4584640264511108:
+                    if Euclidean k-median <= 0.36542846262454987:
+                      return [[0. 2.]]
+                    else:  # if Euclidean k-median > 0.36542846262454987
+                      return [[4. 0.]]
+                  else:  # if Day count Mean > 1.4584640264511108
+                    return [[33.  0.]]
+            else:  # if Euclidean k-mean > 4.0615527629852295
+              if Euclidean k-median <= 0.40287135541439056:
+                return [[0. 3.]]
+              else:  # if Euclidean k-median > 0.40287135541439056
+                return [[9. 0.]]
+          else:  # if max Day count > 418132.0
+            if max Day count <= 734304.0:
+              if DTW k-STD <= 63.33333206176758:
+                if DTW k-Malicious(%) <= 11.5:
+                  return [[5. 0.]]
+                else:  # if DTW k-Malicious(%) > 11.5
+                  if DTW k-median <= 1.661871075630188:
+                    if DTW k-median <= 0.7118888199329376:
+                      return [[3. 1.]]
+                    else:  # if DTW k-median > 0.7118888199329376
+                      return [[0. 5.]]
+                  else:  # if DTW k-median > 1.661871075630188
+                    return [[3. 0.]]
+              else:  # if DTW k-STD > 63.33333206176758
+                if Day count Mean <= 0.919153481721878:
+                  return [[1. 0.]]
+                else:  # if Day count Mean > 0.919153481721878
+                  return [[0. 6.]]
+            else:  # if max Day count > 734304.0
+              if max Day count <= 1650686.0:
+                return [[24.  0.]]
+              else:  # if max Day count > 1650686.0
+                if max Day count <= 1660766.0:
+                  return [[0. 1.]]
+                else:  # if max Day count > 1660766.0
+                  if max Day count <= 9109633.0:
+                    if max Day count <= 7747618.5:
+                      return [[35.  4.]]
+                    else:  # if max Day count > 7747618.5
+                      return [[3. 5.]]
+                  else:  # if max Day count > 9109633.0
+                    return [[22.  0.]]
+      else:  # if Peaks > 0.5
+        if max Day count <= 2586784.5:
+          if max Day count <= 486940.0:
+            if Euclidean k-median <= 1.3734096884727478:
+              return [[0. 1.]]
+            else:  # if Euclidean k-median > 1.3734096884727478
+              if Day count STD <= 97.0:
+                return [[11.  0.]]
+              else:  # if Day count STD > 97.0
+                if Euclidean k-mean <= 55.39570617675781:
+                  return [[0. 1.]]
+                else:  # if Euclidean k-mean > 55.39570617675781
+                  return [[2. 0.]]
+          else:  # if max Day count > 486940.0
+            return [[ 0. 24.]]
+        else:  # if max Day count > 2586784.5
+          return [[11.  0.]]
+
+----------------------------------------------
