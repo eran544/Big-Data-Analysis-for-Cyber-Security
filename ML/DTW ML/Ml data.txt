@@ -1,0 +1,327 @@
+DTW Cross Validation (5 fold):
+1.1 Logistic Regression(penalty='l2',solver='liblinear',max_iter=300): [0.89484127 0.89484127 0.89484127 0.89484127 0.8968254 ] => the avarage is 0.8952380952380953 
+1.2 Logistic Regression(penalty='l2', solver='liblinear', max_iter=500): [0.89484127 0.89484127 0.89484127 0.89484127 0.8968254 ] => the avarage is 0.8952380952380953 
+2.1 TreeClassifier(random_state=0, max_depth=10, min_samples_leaf=1): [0.88293651 0.89087302 0.86706349 0.89087302 0.89484127] => the avarage is 0.8853174603174603 
+2.2 TreeClassifier(random_state=0, max_depth=3, min_samples_leaf=1): [0.8968254  0.89880952 0.89087302 0.89880952 0.9047619 ] => the avarage is 0.8980158730158732 
+ => the best Classifier is TreeClassifier(random_state=0, max_depth=3, min_samples_leaf=1) 
+----------------------------------------------
+DTW Decision Tree Classifier feature_importances: 
+Day count Mean: 0.05782195963361433 
+2^coeff: 1.0408931350323312 
+Day count STD: 0.11986301950681044 
+2^coeff: 1.0866316845110122 
+max Day count: 0.0882271915676006 
+2^coeff: 1.063063069367531 
+Size: 0.48495013787044455 
+2^coeff: 1.3995374942320042 
+DTW 15-Malicious(%): 0.10704192927976584 
+2^coeff: 1.0770176772774802 
+DTW 10-Malicious(%): 0.037787040916977016 
+2^coeff: 1.0265380052199975 
+DTW 5-Malicious(%): 0.02759835773003501 
+2^coeff: 1.0193138693592552 
+Prevalence: 0.060643303755454146 
+2^coeff: 1.0429307043383298 
+Peaks: 0.016067059739298062 
+2^coeff: 1.0111990825869175 
+Sharp peaks: 0.0 
+2^coeff: 1.0 
+
+def tree(Malicious, Day count Mean, Day count STD, max Day count, Size, DTW 15-Malicious(%), DTW 10-Malicious(%), DTW 5-Malicious(%), Prevalence, Peaks, Sharp peaks):
+  if Size <= 63.33333206176758:
+    if max Day count <= 1852.5:
+      if DTW 5-Malicious(%) <= 16.5:
+        if max Day count <= 1309.5:
+          return [[199.   0.]]
+        else:  # if max Day count > 1309.5
+          if max Day count <= 1336.0:
+            return [[0. 1.]]
+          else:  # if max Day count > 1336.0
+            return [[26.  0.]]
+      else:  # if DTW 5-Malicious(%) > 16.5
+        if Day count Mean <= 2.611143946647644:
+          if DTW 5-Malicious(%) <= 39.0:
+            if max Day count <= 1148.5:
+              return [[27.  0.]]
+            else:  # if max Day count > 1148.5
+              if Day count Mean <= 1.7519901394844055:
+                return [[0. 2.]]
+              else:  # if Day count Mean > 1.7519901394844055
+                return [[2. 0.]]
+          else:  # if DTW 5-Malicious(%) > 39.0
+            return [[0. 2.]]
+        else:  # if Day count Mean > 2.611143946647644
+          return [[48.  0.]]
+    else:  # if max Day count > 1852.5
+      if max Day count <= 744640.0:
+        if max Day count <= 514702.0:
+          if max Day count <= 20546.5:
+            if Day count Mean <= 1.806551992893219:
+              if Day count Mean <= 0.23354968428611755:
+                return [[0. 1.]]
+              else:  # if Day count Mean > 0.23354968428611755
+                if max Day count <= 1882.0:
+                  return [[0. 1.]]
+                else:  # if max Day count > 1882.0
+                  if Prevalence <= 0.5:
+                    if Size <= 3.3333332538604736:
+                      return [[4. 2.]]
+                    else:  # if Size > 3.3333332538604736
+                      return [[59.  3.]]
+                  else:  # if Prevalence > 0.5
+                    if DTW 10-Malicious(%) <= 10.0:
+                      return [[16.  0.]]
+                    else:  # if DTW 10-Malicious(%) > 10.0
+                      return [[17.  8.]]
+            else:  # if Day count Mean > 1.806551992893219
+              if Malicious <= 1.7727273106575012:
+                if Size <= 9.999999761581421:
+                  return [[0. 7.]]
+                else:  # if Size > 9.999999761581421
+                  if Day count Mean <= 1.8732001781463623:
+                    return [[0. 2.]]
+                  else:  # if Day count Mean > 1.8732001781463623
+                    if Day count Mean <= 2.4419848918914795:
+                      return [[4. 0.]]
+                    else:  # if Day count Mean > 2.4419848918914795
+                      return [[2. 4.]]
+              else:  # if Malicious > 1.7727273106575012
+                if max Day count <= 20355.0:
+                  if Day count STD <= 103.5:
+                    return [[24.  0.]]
+                  else:  # if Day count STD > 103.5
+                    return [[0. 1.]]
+                else:  # if max Day count > 20355.0
+                  return [[0. 2.]]
+          else:  # if max Day count > 20546.5
+            if max Day count <= 417119.5:
+              if Day count Mean <= 0.5133789777755737:
+                if DTW 15-Malicious(%) <= 35.0:
+                  return [[0. 3.]]
+                else:  # if DTW 15-Malicious(%) > 35.0
+                  return [[2. 0.]]
+              else:  # if Day count Mean > 0.5133789777755737
+                if DTW 5-Malicious(%) <= 1721.5:
+                  if DTW 15-Malicious(%) <= 65.0:
+                    if max Day count <= 39910.5:
+                      return [[93.  2.]]
+                    else:  # if max Day count > 39910.5
+                      return [[517.  47.]]
+                  else:  # if DTW 15-Malicious(%) > 65.0
+                    if Day count STD <= 3.5:
+                      return [[0. 1.]]
+                    else:  # if Day count STD > 3.5
+                      return [[1. 0.]]
+                else:  # if DTW 5-Malicious(%) > 1721.5
+                  return [[0. 1.]]
+            else:  # if max Day count > 417119.5
+              if max Day count <= 429652.0:
+                return [[0. 4.]]
+              else:  # if max Day count > 429652.0
+                if max Day count <= 467158.0:
+                  if Day count Mean <= 1.9445492625236511:
+                    if DTW 10-Malicious(%) <= 10.0:
+                      return [[7. 0.]]
+                    else:  # if DTW 10-Malicious(%) > 10.0
+                      return [[8. 5.]]
+                  else:  # if Day count Mean > 1.9445492625236511
+                    if DTW 5-Malicious(%) <= 182.0:
+                      return [[1. 4.]]
+                    else:  # if DTW 5-Malicious(%) > 182.0
+                      return [[1. 0.]]
+                else:  # if max Day count > 467158.0
+                  if DTW 15-Malicious(%) <= 15.0:
+                    if Malicious <= 2.1363636255264282:
+                      return [[22.  0.]]
+                    else:  # if Malicious > 2.1363636255264282
+                      return [[11.  1.]]
+                  else:  # if DTW 15-Malicious(%) > 15.0
+                    if Day count STD <= 15.5:
+                      return [[21.  4.]]
+                    else:  # if Day count STD > 15.5
+                      return [[0. 1.]]
+        else:  # if max Day count > 514702.0
+          if Day count STD <= 17.5:
+            if max Day count <= 593152.0:
+              if max Day count <= 555547.0:
+                if max Day count <= 531317.0:
+                  if Day count Mean <= 3.9126771688461304:
+                    return [[10.  0.]]
+                  else:  # if Day count Mean > 3.9126771688461304
+                    return [[0. 2.]]
+                else:  # if max Day count > 531317.0
+                  if DTW 10-Malicious(%) <= 30.0:
+                    return [[0. 5.]]
+                  else:  # if DTW 10-Malicious(%) > 30.0
+                    if DTW 5-Malicious(%) <= 11.5:
+                      return [[2. 0.]]
+                    else:  # if DTW 5-Malicious(%) > 11.5
+                      return [[0. 1.]]
+              else:  # if max Day count > 555547.0
+                return [[25.  0.]]
+            else:  # if max Day count > 593152.0
+              if max Day count <= 673024.0:
+                if Day count STD <= 2.5:
+                  if DTW 15-Malicious(%) <= 15.0:
+                    if Day count Mean <= 0.6671107411384583:
+                      return [[1. 0.]]
+                    else:  # if Day count Mean > 0.6671107411384583
+                      return [[2. 5.]]
+                  else:  # if DTW 15-Malicious(%) > 15.0
+                    if max Day count <= 594496.0:
+                      return [[0. 1.]]
+                    else:  # if max Day count > 594496.0
+                      return [[10.  1.]]
+                else:  # if Day count STD > 2.5
+                  if Day count Mean <= 1.4269979000091553:
+                    if max Day count <= 664320.0:
+                      return [[ 2. 15.]]
+                    else:  # if max Day count > 664320.0
+                      return [[1. 0.]]
+                  else:  # if Day count Mean > 1.4269979000091553
+                    if max Day count <= 635549.5:
+                      return [[11.  3.]]
+                    else:  # if max Day count > 635549.5
+                      return [[1. 5.]]
+              else:  # if max Day count > 673024.0
+                if DTW 15-Malicious(%) <= 15.0:
+                  return [[11.  0.]]
+                else:  # if DTW 15-Malicious(%) > 15.0
+                  if DTW 5-Malicious(%) <= 14.0:
+                    if Day count Mean <= 1.1088925004005432:
+                      return [[3. 1.]]
+                    else:  # if Day count Mean > 1.1088925004005432
+                      return [[1. 4.]]
+                  else:  # if DTW 5-Malicious(%) > 14.0
+                    if Size <= 16.666666507720947:
+                      return [[1. 1.]]
+                    else:  # if Size > 16.666666507720947
+                      return [[4. 0.]]
+          else:  # if Day count STD > 17.5
+            if max Day count <= 679066.5:
+              if Size <= 9.999999761581421:
+                return [[1. 0.]]
+              else:  # if Size > 9.999999761581421
+                return [[ 0. 23.]]
+            else:  # if max Day count > 679066.5
+              return [[3. 0.]]
+      else:  # if max Day count > 744640.0
+        if Size <= 9.999999761581421:
+          if Day count Mean <= 0.6604348421096802:
+            if Day count STD <= 1.5:
+              return [[1. 0.]]
+            else:  # if Day count STD > 1.5
+              return [[0. 1.]]
+          else:  # if Day count Mean > 0.6604348421096802
+            if max Day count <= 5654087.5:
+              if max Day count <= 864999.0:
+                if max Day count <= 838157.0:
+                  if max Day count <= 818168.0:
+                    return [[39.  0.]]
+                  else:  # if max Day count > 818168.0
+                    if max Day count <= 822268.0:
+                      return [[0. 1.]]
+                    else:  # if max Day count > 822268.0
+                      return [[2. 0.]]
+                else:  # if max Day count > 838157.0
+                  return [[0. 3.]]
+              else:  # if max Day count > 864999.0
+                if max Day count <= 3265833.5:
+                  if max Day count <= 3167923.5:
+                    if Size <= 3.3333332538604736:
+                      return [[29.  2.]]
+                    else:  # if Size > 3.3333332538604736
+                      return [[52.  0.]]
+                  else:  # if max Day count > 3167923.5
+                    return [[0. 1.]]
+                else:  # if max Day count > 3265833.5
+                  if Day count Mean <= 1.452149510383606:
+                    if Malicious <= 1.2727272510528564:
+                      return [[45.  0.]]
+                    else:  # if Malicious > 1.2727272510528564
+                      return [[1. 1.]]
+                  else:  # if Day count Mean > 1.452149510383606
+                    return [[218.   0.]]
+            else:  # if max Day count > 5654087.5
+              if max Day count <= 5674243.5:
+                return [[0. 1.]]
+              else:  # if max Day count > 5674243.5
+                if Prevalence <= 3.5:
+                  if max Day count <= 8568664.0:
+                    if DTW 10-Malicious(%) <= 10.0:
+                      return [[40.  0.]]
+                    else:  # if DTW 10-Malicious(%) > 10.0
+                      return [[12.  1.]]
+                  else:  # if max Day count > 8568664.0
+                    if max Day count <= 8707584.0:
+                      return [[0. 1.]]
+                    else:  # if max Day count > 8707584.0
+                      return [[51.  4.]]
+                else:  # if Prevalence > 3.5
+                  return [[0. 1.]]
+        else:  # if Size > 9.999999761581421
+          if Malicious <= 36.545454025268555:
+            if Day count Mean <= 0.6808757781982422:
+              if max Day count <= 4074566.5:
+                if Malicious <= 0.8636363744735718:
+                  return [[9. 0.]]
+                else:  # if Malicious > 0.8636363744735718
+                  if DTW 5-Malicious(%) <= 10.5:
+                    return [[0. 1.]]
+                  else:  # if DTW 5-Malicious(%) > 10.5
+                    return [[2. 0.]]
+              else:  # if max Day count > 4074566.5
+                if max Day count <= 11536024.5:
+                  if DTW 15-Malicious(%) <= 15.0:
+                    if max Day count <= 7049044.0:
+                      return [[1. 0.]]
+                    else:  # if max Day count > 7049044.0
+                      return [[0. 1.]]
+                  else:  # if DTW 15-Malicious(%) > 15.0
+                    return [[0. 3.]]
+                else:  # if max Day count > 11536024.5
+                  return [[3. 0.]]
+            else:  # if Day count Mean > 0.6808757781982422
+              if Day count Mean <= 0.9627647995948792:
+                if Malicious <= 0.6818181872367859:
+                  return [[71.  0.]]
+                else:  # if Malicious > 0.6818181872367859
+                  if max Day count <= 15005755.5:
+                    if DTW 10-Malicious(%) <= 10.0:
+                      return [[9. 2.]]
+                    else:  # if DTW 10-Malicious(%) > 10.0
+                      return [[29.  0.]]
+                  else:  # if max Day count > 15005755.5
+                    if DTW 5-Malicious(%) <= 10.0:
+                      return [[1. 0.]]
+                    else:  # if DTW 5-Malicious(%) > 10.0
+                      return [[0. 1.]]
+              else:  # if Day count Mean > 0.9627647995948792
+                if max Day count <= 9452622.0:
+                  if max Day count <= 9370868.0:
+                    if Prevalence <= 1.5:
+                      return [[308.  33.]]
+                    else:  # if Prevalence > 1.5
+                      return [[53. 13.]]
+                  else:  # if max Day count > 9370868.0
+                    return [[0. 1.]]
+                else:  # if max Day count > 9452622.0
+                  if DTW 10-Malicious(%) <= 50.0:
+                    if Day count Mean <= 0.9953499138355255:
+                      return [[4. 1.]]
+                    else:  # if Day count Mean > 0.9953499138355255
+                      return [[71.  0.]]
+                  else:  # if DTW 10-Malicious(%) > 50.0
+                    if Day count STD <= 4.5:
+                      return [[0. 1.]]
+                    else:  # if Day count STD > 4.5
+                      return [[2. 0.]]
+          else:  # if Malicious > 36.545454025268555
+            if DTW 5-Malicious(%) <= 727.5:
+              return [[0. 4.]]
+            else:  # if DTW 5-Malicious(%) > 727.5
+              return [[2. 0.]]
+  else:  # if Size > 63.33333206176758
+    return [[ 0. 10.]]
+
+----------------------------------------------

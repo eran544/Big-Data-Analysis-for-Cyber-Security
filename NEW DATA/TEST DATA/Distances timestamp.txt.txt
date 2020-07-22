@@ -1,2 +1,0 @@
-START Euclidean : 06-Jul-2020 (00:17:18)END Euclidean : 06-Jul-2020 (00:32:00)START DTW : 06-Jul-2020 (00:32:00)END DTW : 06-Jul-2020 (00:46:09)END Timestamp : 06-Jul-2020 (00:46:38)
- ----------- 

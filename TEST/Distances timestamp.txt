@@ -1,0 +1,6 @@
+ START Euclidean : 11-Jul-2020 (16:07:30) END Euclidean : 11-Jul-2020 (16:12:55) START DTW : 11-Jul-2020 (16:12:57) END DTW : 11-Jul-2020 (16:18:06) END Timestamp : 11-Jul-2020 (16:18:18)
+ ----------- 
+ START Euclidean : 11-Jul-2020 (17:46:37) END Euclidean : 11-Jul-2020 (17:52:11) START DTW : 11-Jul-2020 (17:52:11) END DTW : 11-Jul-2020 (17:57:27) END Timestamp : 11-Jul-2020 (17:57:42)
+ ----------- 
+ START Euclidean : 11-Jul-2020 (18:53:25) END Euclidean : 11-Jul-2020 (18:58:58) START DTW : 11-Jul-2020 (18:58:58) END DTW : 11-Jul-2020 (19:04:33) END Timestamp : 11-Jul-2020 (19:04:47)
+ ----------- 
