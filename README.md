@@ -1,4 +1,4 @@
-Big Data Analysis for Cyber Security: mini project
+## Big Data Analysis for Cyber Security: mini project
 
 This project's main goal is to train a classifier who can detect malicious files.
 In order to do so we tried to detect patterns of clean files versus malicious files using time series analysis and pattern extraction methods on our data set,
