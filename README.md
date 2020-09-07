@@ -1,5 +1,4 @@
 # <b> Big Data Analysis for Cyber Security: Time-Series Analysis mini project </b>
-<hr>
 
 
 ### <i> This project's main goal is to train a classifier who can detect malicious files.<br>                                        We detected patterns of clean files versus malicious files in our dataset using time series analysis and pattern extraction methods, and trained a classifier accordingly using machine learning. 
@@ -52,7 +51,7 @@ we get the Euclidean distance between them by the following calculation: <br>
 
 In addition, we performed a preliminary calculation of the change in the center of mass so that each series would start from the first number that is not 0, by performing a circular shift - transferring a prime of 0 to the end of the series. This calculation is intended so that patterns of increase / decrease in the rate of the number of downloads can also be identified at different times.
 
-### 2.Dynamic Time Wrapping (DTW) Algorithm:
+### 2. Dynamic Time Wrapping (DTW) Algorithm:
 given two series, seeks the best match between them by the following formula: <br>
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/dtw.JPG)
 meaning it matches the patterns in the download rate and then compares them.
@@ -71,10 +70,10 @@ For each file we have selected a number of properties, wich we will pass to the 
 ### 2. Size - File size in KB.
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/SIZE.png)
 
-### 3. DTW / Euclidean 5/10/15 Malicious- Represents the percentage of malicious files out of the 5/10/15 files closest to each file in each method.
-![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/K5.png)
+### 3. DTW / Euclidean 5/10/15 Malicious- Represents the percentage of malicious files out of the 5/10/15 files closest to each file in each method.<br>
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/K5.png) <br>
 
-![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/K10.png)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/K10.png)<br>
 
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/k15.JPG)
 
@@ -84,8 +83,8 @@ For each file we have selected a number of properties, wich we will pass to the 
 ### 5. Peaks- Indicates the number of days in the time series in which the number of downloads exceeded 3.
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/PEAKS.jpg)
 
-### 6.Sharp Peaks- Indicates the number of days in the time series in which the difference between the number of downloads in that day and the downloads in its surrounding exceeds 15.<br> We used a topographic  prominence algorithm to find peakes that stand out above their surrounding.
-![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/SHARPPEAKS.jpg)
+### 6. Sharp Peaks- Indicates the number of days in the time series in which the difference between the number of downloads in that day and the downloads in its surrounding exceeds 15.<br> We used a topographic  prominence algorithm to find peakes that stand out above their surrounding.
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/SHARPPEAKS.tif.jpg)
 
 ### 7. Day Count STD- Indicates the standard deviation of the number of downloads per day.
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/STD.jpg)
