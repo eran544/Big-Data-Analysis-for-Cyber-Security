@@ -43,16 +43,13 @@ For each file from the data set we calculated the distance between its time seri
 
 
 ### 1. Euclidean distance: 
-Given two time series 
-![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/time.JPG)
-
-we get the Euclidean distance between them by the following calculation: <br>
+Given two time series (t1,...,tn),(s1,...,sn) the Euclidean distance between them is: <br>
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/ouc.JPG)
 
 In addition, we performed a preliminary calculation of the change in the center of mass so that each series would start from the first number that is not 0, by performing a circular shift - transferring a prime of 0 to the end of the series. This calculation is intended so that patterns of increase / decrease in the rate of the number of downloads can also be identified at different times.
 
 ### 2. Dynamic Time Wrapping (DTW) Algorithm:
-given two series, seeks the best match between them by the following formula: <br>
+given two series (t1,...,tn),(s1,...,sn) the algorithm seeks the best match between them by the following formula: <br>
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/dtw.JPG)
 meaning it matches the patterns in the download rate and then compares them.
 
