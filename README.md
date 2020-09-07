@@ -23,12 +23,10 @@ Having set the threshold above, this is the data we have left which meets the de
 
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/2.jpg)
 
----
-see code at
+see code at: <br>
 https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/TRAIN/TRAIN%20DATA/All_data_to_Hour_Day_datasets.py
----
 
-For each file from the in train group we created a time series (vector representing number of downloads in a (daily / hourly time frame ) that represents the number of file downloads on different machines, ie does not include repeated downloads of a file on the same machine.
+For each file from the train group we created a time series (vector representing number of downloads in a (daily / hourly time frame ) that represents the number of file downloads on different machines, ie does not include repeated downloads of a file on the same machine.
 To produce time series - we started by classifying by day and by hour: we grouped the downloads for each file => We deleted double downloads on the same machine according to SH1 so that for each day / hour we left the first download that occurred on a specific machine only.
 
 We started with a division of time ranges by hours and by days. Later we decided to continue with time series at intervals of only days (for technical reasons of code execution times).
@@ -36,11 +34,9 @@ We started with a division of time ranges by hours and by days. Later we decided
 Example for dayly time series of a file:
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/3.jpg)
 
-
----
-see code at
+see code at: <br>
 https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/TRAIN/TRAIN%20DATA/Dayset_to_day_data.py
----
+
 
 
 ## Step Two - Calculating File distances
@@ -61,11 +57,9 @@ given two series, seeks the best match between them by the following formula: <b
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/dtw.JPG)
 meaning it matches the patterns in the download rate and then compares them.
 
-
----
-see code at
+see code at: <br>
 https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/TRAIN/TRAIN%20DATA/Distances.py
----
+
 
 
 ## Step three- Features Analysis
@@ -75,7 +69,7 @@ For each file we have selected a number of properties, wich we will pass to the 
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/PREVALENCE.jpg)
 
 ### 2. Size - File size in KB.
-![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/SIZE.jpg)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/SIZE.png)
 
 ### 3. DTW / Euclidean 5/10/15 Malicious- Represents the percentage of malicious files out of the 5/10/15 files closest to each file in each method.
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/K5.png)
@@ -99,10 +93,10 @@ For each file we have selected a number of properties, wich we will pass to the 
 ### 8. Max Day Count- Displays the distribution of the maximum number of downloads in each time series for each file.
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/MAX.png)
 
----
-see code at
+see code at: <br>
 https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/TRAIN/TRAIN%20DATA/features.py
----
+
+
 
 ## Step Four - Machine Learning
 We trained two types of models - Logistic Regression and TreeClassifier on the train dataset.<br> We ran 5-Fold Cross Validation on each of the models.
@@ -122,12 +116,12 @@ The coefficient of each feature represents the correlation between it and the cl
 
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/RES2.png)
 
----
-see code at
+see code at:<br>
 https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/ML/DTW%20ML/ML.py
 
 https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/ML/Euclidean%20ML/ML.py
----
+
+
 
 ## Step Five - Conclusions
 The models we used provided a very different picture than we expected.
