@@ -3,7 +3,8 @@
 
 ### <i> This project's main goal is to train a classifier who can detect malicious files.<br>                                        We detected patterns of clean files versus malicious files in our dataset using time series analysis and pattern extraction methods, and trained a classifier accordingly using machine learning. 
 ### <i> The dataset we based our work on has been provided us by Microsoft and includes information about downloaded files sent as a webmail attachment in the first 14 days of 2017.
-### <i> The project in wiritten in Python, using pandas library for data analysis and sklearn library for machine learning algorithms.
+### <i> The project in wiritten in Python, using pandas library for data analysis and sklearn library for machine learning algorithms. <br>
+see full report here: https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/%D7%A0%D7%99%D7%AA%D7%95%D7%97%20%D7%A0%D7%AA%D7%95%D7%A0%D7%99%20%D7%A2%D7%AA%D7%A7%20%D7%9C%D7%A9%D7%9D%20%D7%90%D7%91%D7%98%D7%97%D7%AA%20%D7%94%D7%9E%D7%A8%D7%97%D7%91%20%D7%94%D7%9E%D7%A7%D7%95%D7%95%D7%9F%20%D7%91%D7%A0%D7%95%D7%A9%D7%90%20TSA%E2%80%8F-%D7%93%D7%95%D7%97%20%D7%A1%D7%95%D7%A4%D7%99.pdf
 <hr>
 
 
