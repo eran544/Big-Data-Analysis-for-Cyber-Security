@@ -10,7 +10,7 @@
 
 ## Step One - Preliminary analysis of the data
 We divided the dataset into two groups, train- the first 11 days of the dataset, and test-the remaining 3 days of the dataset.
-![image005.png](attachment:image005.png)
+![](image005.png?raw=true)
 
 First, we set a threshold for files - a file will be removed if it had 5 or less downloads on different machines. 
 
