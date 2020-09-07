@@ -373,19 +373,17 @@ For each file from the data set we calculated the distance between its time seri
 
 
 ### 1. Euclidean distance: 
-Given two time series ![image011.png](attachment:image011.png)
-
+Given two time series 
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/time.JPG)
 
 we get the Euclidean distance between them by the following calculation: 
-![image012.png](attachment:image012.png)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/ouc.JPG)
+
 In addition, we performed a preliminary calculation of the change in the center of mass so that each series would start from the first number that is not 0, by performing a circular shift - transferring a prime of 0 to the end of the series. This calculation is intended so that patterns of increase / decrease in the rate of the number of downloads can also be identified at different times.
 
 ### 2.Dynamic Time Wrapping (DTW) Algorithm:
 given two series, seeks the best match between them by the following formula:
-
-
-
-![image013.png](attachment:image013.png)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/dtw.JPG)
 meaning it matches the patterns in the download rate and then compares them.
 
 
@@ -651,14 +649,16 @@ For each file we have selected a number of properties, wich we will pass to the 
 
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/K10.png)
 
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/k15.JPG)
+
 ### 4. Day Count Mean- Indicates the average daily downloads of the files.
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/MEAN.jpg)
 
 ### 5. Peaks- Indicates the number of days in the time series in which the number of downloads exceeded 3.
-![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/PEAKS.tif)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/PEAKS.jpg)
 
 ### 6.Sharp Peaks- Indicates the number of days in the time series in which the difference between the number of downloads in that day and the downloads in its surrounding exceeds 15.<br> We used a topographic  prominence algorithm to find peakes that stand out above their surrounding.
-![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/SHARPPEAKS.tif)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/SHARPPEAKS.jpg)
 
 ### 7. Day Count STD- Indicates the standard deviation of the number of downloads per day.
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/STD.jpg)
