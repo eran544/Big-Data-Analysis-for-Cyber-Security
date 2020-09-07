@@ -10,7 +10,8 @@
 
 ## Step One - Preliminary analysis of the data
 We divided the dataset into two groups, train- the first 11 days of the dataset, and test-the remaining 3 days of the dataset.
-![](image005.png?raw=true)
+
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/1.JPG)
 
 First, we set a threshold for files - a file will be removed if it had 5 or less downloads on different machines. 
 
@@ -19,7 +20,8 @@ than 5 downloads on different machines.
 A file is defined as malicious if it is tagged as malicious in one of its instances during the train period, and has more than 5 downloads on different machines.
 
 Having set the threshold above, this is the data we have left which meets the definition:
-![image006.png](attachment:image006.png)
+
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/2.jpg)
 
 
 
@@ -164,23 +166,9 @@ print("saved")
 
 
 
-
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-2-ee243efde548> in <module>
-    ----> 1 import pandas as pd
-          2 import os
-          3 import matplotlib.dates as md
-          4 import matplotlib.pyplot as plt
-          5 import pickle
-    
-
-    ModuleNotFoundError: No module named 'pandas'
 
 
 For each file from the in train group we created a time series (vector representing number of downloads in a (daily / hourly time frame ) that represents the number of file downloads on different machines, ie does not include repeated downloads of a file on the same machine.
@@ -189,7 +177,7 @@ To produce time series - we started by classifying by day and by hour: we groupe
 We started with a division of time ranges by hours and by days. Later we decided to continue with time series at intervals of only days (for technical reasons of code execution times).
 
 Example for dayly time series of a file:
-![file%203985475.png](attachment:file%203985475.png)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/3.jpg)
 
 
 ```python
@@ -653,29 +641,30 @@ print("finished")
 For each file we have selected a number of properties, wich we will pass to the ML model to distinguish between clean and malicious files. For each file we extracted three types of properties  :
 
 ### 1. Prevalence feature - file download frequency, total downloads on different machines each day.
-![Prevalence%20Distribution.png](attachment:Prevalence%20Distribution.png)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/PREVALENCE.jpg)
 
 ### 2. Size - File size in KB.
-![Size%20Distribution.png](attachment:Size%20Distribution.png)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/SIZE.jpg)
 
 ### 3. DTW / Euclidean 5/10/15 Malicious- Represents the percentage of malicious files out of the 5/10/15 files closest to each file in each method.
-![image024.png](attachment:image024.png)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/K5.png)
 
-![image025.png](attachment:image025.png)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/K10.png)
 
 ### 4. Day Count Mean- Indicates the average daily downloads of the files.
-![Day%20count%20Mean%20Distribution.png](attachment:Day%20count%20Mean%20Distribution.png)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/MEAN.jpg)
 
 ### 5. Peaks- Indicates the number of days in the time series in which the number of downloads exceeded 3.
-![Peaks%20Distribution.png](attachment:Peaks%20Distribution.png)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/PEAKS.tif)
 
 ### 6.Sharp Peaks- Indicates the number of days in the time series in which the difference between the number of downloads in that day and the downloads in its surrounding exceeds 15.<br> We used a topographic  prominence algorithm to find peakes that stand out above their surrounding.
-![sharp%20peaks.jpg](attachment:sharp%20peaks.jpg)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/SHARPPEAKS.tif)
 
 ### 7. Day Count STD- Indicates the standard deviation of the number of downloads per day.
-![Day%20count%20STD%20Distribution.png](attachment:Day%20count%20STD%20Distribution.png)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/STD.jpg)
 
-### 8. Max Day Count- Displays the distribution of the maximum number of downloads in each time series for each file.![max%20Day%20count%20Distribution.png](attachment:max%20Day%20count%20Distribution.png)
+### 8. Max Day Count- Displays the distribution of the maximum number of downloads in each time series for each file.
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/MAX.png)
 
 
 ```python
@@ -1203,19 +1192,19 @@ for title in list(features.columns)[2:] :
 We trained two types of models - Logistic Regression and TreeClassifier on the train dataset.<br> We ran 5-Fold Cross Validation on each of the models.
 The score of each model is determined by the average of the scores of the runs.<br> The highest score was obtained for tree model with a depth equal to 3.
 
-![image033.png](attachment:image033.png)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/5FOLD.jpg)
 
 After running the selected model on the test dataset on the we can see the importance of each characteristic.
 
 The coefficient of each feature represents the correlation between it and the classification of the file as malicious by the model.
 
-![image039.png](attachment:image039.png)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/FEATURES.jpg)
 
 ### Model results for each distance calculation method:
 
-![image040.jpg](attachment:image040.jpg)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/RES1.png)
 
-![image041.jpg](attachment:image041.jpg)
+![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/RES2.png)
 
 
 ```python
