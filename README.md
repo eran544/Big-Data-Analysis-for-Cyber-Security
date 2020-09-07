@@ -26,10 +26,7 @@ Having set the threshold above, this is the data we have left which meets the de
 ---
 see code at
 https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/TRAIN/TRAIN%20DATA/All_data_to_Hour_Day_datasets.py
-```
-
-
-
+---
 
 For each file from the in train group we created a time series (vector representing number of downloads in a (daily / hourly time frame ) that represents the number of file downloads on different machines, ie does not include repeated downloads of a file on the same machine.
 To produce time series - we started by classifying by day and by hour: we grouped the downloads for each file => We deleted double downloads on the same machine according to SH1 so that for each day / hour we left the first download that occurred on a specific machine only.
@@ -43,7 +40,7 @@ Example for dayly time series of a file:
 ---
 see code at
 https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/TRAIN/TRAIN%20DATA/Dayset_to_day_data.py
-```
+---
 
 
 ## Step Two - Calculating File distances
@@ -54,13 +51,13 @@ For each file from the data set we calculated the distance between its time seri
 Given two time series 
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/time.JPG)
 
-we get the Euclidean distance between them by the following calculation: 
+we get the Euclidean distance between them by the following calculation: <br>
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/ouc.JPG)
 
 In addition, we performed a preliminary calculation of the change in the center of mass so that each series would start from the first number that is not 0, by performing a circular shift - transferring a prime of 0 to the end of the series. This calculation is intended so that patterns of increase / decrease in the rate of the number of downloads can also be identified at different times.
 
 ### 2.Dynamic Time Wrapping (DTW) Algorithm:
-given two series, seeks the best match between them by the following formula:
+given two series, seeks the best match between them by the following formula: <br>
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/dtw.JPG)
 meaning it matches the patterns in the download rate and then compares them.
 
@@ -68,7 +65,7 @@ meaning it matches the patterns in the download rate and then compares them.
 ---
 see code at
 https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/TRAIN/TRAIN%20DATA/Distances.py
-```
+---
 
 
 ## Step three- Features Analysis
@@ -105,7 +102,7 @@ For each file we have selected a number of properties, wich we will pass to the 
 ---
 see code at
 https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/TRAIN/TRAIN%20DATA/features.py
-```
+---
 
 ## Step Four - Machine Learning
 We trained two types of models - Logistic Regression and TreeClassifier on the train dataset.<br> We ran 5-Fold Cross Validation on each of the models.
@@ -125,12 +122,12 @@ The coefficient of each feature represents the correlation between it and the cl
 
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/RES2.png)
 
- ---
+---
 see code at
 https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/ML/DTW%20ML/ML.py
 
 https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/ML/Euclidean%20ML/ML.py
-```
+---
 
 ## Step Five - Conclusions
 The models we used provided a very different picture than we expected.
@@ -142,10 +139,3 @@ In addition, in contrast to the expectation that the characteristics associated 
 Unfortunately, the weight of the features obtained did not provide the desired result at all and could not provide us a strong and clear picture as to the classification of the files.
 Perhaps in order to see differences in download patterns with these features, it is necessary to increase the amount of files in the dataset and / or the measured time frame.
 
-
-
-
-
-```python
-
-```
