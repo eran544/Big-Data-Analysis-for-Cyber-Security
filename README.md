@@ -114,7 +114,7 @@ Feature importance scores can provide insight into the dataset. The relative sco
 
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/FEATURES.jpg)
 
-### Model results for each distance calculation method:
+### Model results for each distance calculation method (on test dataset):
 
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/RES1.png)
 
