@@ -109,7 +109,8 @@ An ROC curve plots the connection between True Positive Rate(TPR) and the False 
 
 After running the selected model on the test dataset on the we can see the importance of each characteristic.
 
-The coefficient of each feature represents the correlation between it and the classification of the file as malicious by the model.
+The coefficient of each feature represents the correlation between it and the classification of the file as malicious by the model.  
+Feature importance scores can provide insight into the dataset. The relative scores can highlight which features may be most relevant to the target, and the converse, which features are the least relevant.
 
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/FEATURES.jpg)
 
