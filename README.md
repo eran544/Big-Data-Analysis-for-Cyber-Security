@@ -99,6 +99,12 @@ https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/TRAI
 We trained two types of models - Logistic Regression and TreeClassifier on the train dataset.<br> We ran 5-Fold Cross Validation on each of the models.
 The score of each model is determined by the average of the scores of the runs.<br> The highest score was obtained for tree model with a depth equal to 3.
 
+  
+AUC (area under the curve) represents the probability that a random positive example is positioned to the right of a random negative example. 
+It measures how well predictions are ranked, rather than their absolute values' and the quality of the model's predictions irrespective of what classification threshold is chosen.     
+AUC ranges in value from 0 to 1. A model whose predictions are 100% wrong has an AUC of 0.0. one whose predictions are 100% correct has an AUC of 1.0.  
+An ROC curve plots the connection between True Positive Rate(TPR) and the False Positive Rate(FPR) of the classifier. AUC is the area Under the ROC Curve. 
+
 ![](https://github.com/eran544/Big-Data-Analysis-for-Cyber-Security/blob/master/results/images/5FOLD.jpg)
 
 After running the selected model on the test dataset on the we can see the importance of each characteristic.
